@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "webpack-dev-server --mode development --open --watch",
+    "build": "rimraf dist webpack --mode production",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -16,11 +17,30 @@
   "bugs": {
     "url": "https://github.com/maruost/news-frontend/issues"
   },
-  "homepage": "https://github.com/maruost/news-frontend#readme",
+  "homepage": "https://github.com/maruost/news-frontend/",
   "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "autoprefixer": "^10.0.1",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.3.0",
+    "cssnano": "^4.1.10",
     "eslint": "^7.10.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",
-    "nodemon": "^2.0.4"
+    "gh-pages": "~3.1.0",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^0.11.3",
+    "nodemon": "^2.0.4",
+    "postcss-loader": "^4.0.3",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-md5-hash": "0.0.6"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "core-js": "^3.4.1"
   }
 }
