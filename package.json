@@ -1,0 +1,26 @@
+{
+  "name": "news-explorer-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maruost/news-frontend.git"
+  },
+  "author": "Maria Ostapenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maruost/news-frontend/issues"
+  },
+  "homepage": "https://github.com/maruost/news-frontend#readme",
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.4"
+  }
+}
