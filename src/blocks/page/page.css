@@ -1,0 +1,7 @@
+@import url(./__header/page__header.css);
+@import url(./__footer/page__footer.css);
+
+.page {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  margin: 0 auto;
+}

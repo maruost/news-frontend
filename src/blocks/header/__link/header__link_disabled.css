@@ -1,0 +1,5 @@
+/*отключает отображение ссылки меню*/
+
+.header__link_disabled {
+  display: none;
+}

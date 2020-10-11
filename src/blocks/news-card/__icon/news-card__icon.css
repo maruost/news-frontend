@@ -1,0 +1,14 @@
+.news-card__icon {
+  background-image: url(../../../images/bookmark.svg);
+  width: 24px;
+  height: 24px;
+}
+
+.news-card__icon:hover {
+  background-image: url(../../../images/bookmark_black.png);
+}
+
+.news-card__icon_marked {
+  background-image: url(../../../images/bookmark_marked.png);
+
+}

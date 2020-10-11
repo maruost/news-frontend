@@ -1,0 +1,7 @@
+.search-form__button {
+  position: absolute;
+  top: 0px;
+  z-index: 10;
+  right: 0px;
+
+}

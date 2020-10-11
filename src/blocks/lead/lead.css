@@ -1,0 +1,9 @@
+@import url(./__cover/lead__cover.css);
+@import url(./__title/lead__title.css);
+@import url(./__about/lead__about.css);
+@import url(./__container/lead__container.css);
+
+.lead {
+  color: white;
+  max-width: 608px;
+}

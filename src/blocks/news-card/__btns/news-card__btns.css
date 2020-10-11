@@ -1,0 +1,8 @@
+.news-card__btns {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border: 2px solid violet;
+  display: flex;
+  justify-content: right;
+}

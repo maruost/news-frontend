@@ -1,0 +1,10 @@
+@import url(./__container/search-results__container.css);
+@import url(./__title/search-results__title.css);
+@import url(./__button/search-results__button.css);
+@import url(./__news-list/search-results__news-list.css);
+
+.search-results {
+  padding-top: 80px;
+  padding-bottom: 80px;
+ font-family: Roboto, Arial, Helvetica, sans-serif;
+}

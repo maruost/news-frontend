@@ -1,0 +1,10 @@
+.header__link {
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.5;
+  margin-right: 40px;
+  padding-top: 0;
+  padding-bottom: 30px;
+  list-style: none;
+  display: inline;
+}

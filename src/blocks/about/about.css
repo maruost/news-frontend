@@ -1,0 +1,10 @@
+@import url(../about/__avatar/about__avatar.css);
+@import url(../about/__info/about__info.css);
+@import url(../about/__title/about__title.css);
+@import url(../about/__description/about__description.css);
+@import url(../about/__pic/about__pic.css);
+
+
+.about {
+  display: flex;
+}
