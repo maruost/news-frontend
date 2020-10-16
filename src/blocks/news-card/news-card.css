@@ -9,16 +9,16 @@
 @import url(./__icon/news-card__icon.css);
 @import url(./__container/news-card__container.css);
 @import url(./__btns/news-card__btns.css);
+@import url(./__text/news-card__text.css);
 
 .news-card {
   max-width: 400px;
-  width: 32.5%;
   border-radius: 16px;
   background-repeat: no-repeat;
   background-position: center;
   font-family: Roboto, Arial, Helvetica, sans-serif;
   background-color: #fff;
-  margin-bottom: 1.25%;
+  position: relative;
 }
 
 

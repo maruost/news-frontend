@@ -1,14 +1,30 @@
 .news-card__icon {
-  background-image: url(../../../images/bookmark.svg);
-  width: 24px;
-  height: 24px;
+  fill: none;
+  transition: all ease 0.8s;
 }
 
-.news-card__icon:hover {
-  background-image: url(../../../images/bookmark_black.png);
+.news-card__icon_bookmark {
+  stroke: #b6bcbf;
+}
+
+.news-card__icon_bin {
+  fill: #b6bcbf;
+}
+
+.news-card__icon_bookmark:hover {
+  stroke: #1a1b22;
+}
+
+.news-card__icon_bin:hover {
+  fill: #1a1b22;
 }
 
 .news-card__icon_marked {
-  background-image: url(../../../images/bookmark_marked.png);
+  fill: #2F71E5;
+  stroke:#2F71E5;
+}
 
+.news-card__icon_marked:hover {
+  fill: #2F71E5;
+  stroke:#2F71E5;
 }

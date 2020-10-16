@@ -1,0 +1,14 @@
+@import url(./__icon/loader__icon.css);
+@import url(./__subtitle/loader__subtitle.css);
+@import url(./__title/loader__title.css);
+@import url(./__container/loader__container.css);
+
+.loader {
+  padding-top: 80px;
+  padding-bottom: 80px;
+ font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+.loader_disabled {
+  display: none;
+}

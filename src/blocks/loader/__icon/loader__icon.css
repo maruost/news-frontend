@@ -1,0 +1,16 @@
+.loader__icon {
+background-position: cover;
+background-repeat: no-repeat;
+}
+
+.loader__icon_loading {
+  width: 74px;
+  height: 74px;
+  background-image: url(../../../images/loading.png);
+}
+
+.loader__icon_not-found {
+  width: 96px;
+  height: 96px;
+  background-image: url(../../../images/not-found.svg);
+}

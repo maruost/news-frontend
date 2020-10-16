@@ -80,8 +80,13 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: false,
-      template: './src/index.html',
-      filename: 'index.html'
+      template: './src/main.html',
+      filename: 'main.html'
+    }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      template: './src/articles.html',
+      filename: 'articles.html'
     }),
     new WebpackMd5Hash(),
     new webpack.DefinePlugin({

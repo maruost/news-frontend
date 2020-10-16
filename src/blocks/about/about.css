@@ -7,4 +7,5 @@
 
 .about {
   display: flex;
+  max-width: 1232px;
 }

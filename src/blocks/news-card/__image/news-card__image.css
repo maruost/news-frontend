@@ -1,9 +1,12 @@
 .news-card__image {
-  background-image: url(../../../images/image_08.png);
   position: relative;
   width: 100%;
   max-width: 400px;
-  padding-bottom: 53%;
+  padding-bottom: 70%;
   object-fit: cover;
-    border-radius: 16px 16px 0 0;
-  }
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

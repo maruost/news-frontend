@@ -1,5 +1,6 @@
 .news-card__description {
   width: 100%;
-  /* background-color: #fff; */
-
+  position: relative;
+  background-color: #fff;
+  margin-bottom: 40px;
 }

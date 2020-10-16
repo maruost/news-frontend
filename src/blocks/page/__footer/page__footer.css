@@ -1,5 +1,6 @@
 .page__footer {
   margin: 30px auto;
-  max-width: 1232px;
+  padding-right: 40px;
+  padding-left: 40px;
 
 }

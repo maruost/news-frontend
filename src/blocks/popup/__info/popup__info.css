@@ -1,0 +1,9 @@
+.popup__info {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  text-align: center;
+}
+
+.popup__info_success {
+  text-align: left;
+}

@@ -13,3 +13,7 @@
 @import url(../blocks/search-results/search-results.css);
 @import url(../blocks/news-card/news-card.css);
 @import url(../blocks/news-list/news-list.css);
+@import url(../blocks/saved-articles/saved-articles.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/loader/loader.css);
+@import url(../blocks/hide/hide.css);

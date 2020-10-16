@@ -1,13 +1,27 @@
 @import url(./__navigation/header__navigation.css);
 @import url(./__menu/header__menu.css);
 @import url(./__link/header__link.css);
-@import url(./__link/header__link_active.css);
-@import url(./__link/header__link_disabled.css);
 @import url(./__button/header__button.css);
-@import url(./header_theme_main-page.css);
+@import url(./__icon/header__icon.css);
 
 .header {
   border-bottom: 1px solid rgb(209, 210, 214, 0.5);
-  padding-bottom: 30px;
-
+  color: white;
+  fill: white;
+  height: 80px;
 }
+
+.header_theme_dark {
+  border-color: #1A1B22;
+  border-bottom: 1px solid rgb(26, 27, 34, 0.2);
+  color: #1A1B22;
+ fill: #1A1B22;
+  }
+
+
+/* @media screen and (max-width: 769px) {
+  .header__navigation {
+      max-width: 688px;
+      border: 2px solid yellow;
+  }
+} */

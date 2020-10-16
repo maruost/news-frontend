@@ -7,4 +7,17 @@
   padding-bottom: 30px;
   list-style: none;
   display: inline;
+  line-height: 24px;
+
+}
+
+.header__link_active {
+  border-bottom: 3px solid white;
+  border-color: inherit;
+  opacity: 1;
+  color: inherit;
+}
+
+.header__link_disabled {
+  display: none;
 }

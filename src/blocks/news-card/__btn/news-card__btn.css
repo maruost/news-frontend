@@ -1,14 +1,10 @@
 .news-card__btn {
   background-color: #fff;
   border-radius: 8px;
-  text-align: center;
   border: none;
   cursor: pointer;
   height: 40px;
-  padding-bottom: 8px;
-  padding-top: 8px;
-  padding-right: 8px;
-  padding-left: 8px;
+  min-width: 40px;
   margin-right: 5px;
 
   font-family: Roboto, Arial, Helvetica, sans-serif;
@@ -22,4 +18,9 @@
 
 .news-card__btn:last-child {
   margin-right: 0;
+}
+
+.news-card__btn_key-word {
+  font-size: 14px;
+  line-height: 24px;
 }

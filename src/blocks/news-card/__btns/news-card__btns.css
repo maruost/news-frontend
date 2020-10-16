@@ -1,8 +1,14 @@
 .news-card__btns {
   position: absolute;
   top: 24px;
+   display: flex;
+  justify-content: space-between;
+}
+
+.news-card__btns_right {
   right: 24px;
-  border: 2px solid violet;
-  display: flex;
-  justify-content: right;
+}
+
+.news-card__btns_left {
+  left: 24px;
 }

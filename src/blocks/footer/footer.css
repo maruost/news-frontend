@@ -5,5 +5,5 @@
 @import url(./__icon/footer__icon.css);
 
 .footer {
-  padding: 0 0;
+  max-width: 1232px;
 }

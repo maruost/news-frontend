@@ -1,10 +1,7 @@
 .news-list {
-  display: flex;
-  /* grid-template-columns: repeat(auto-fill, minmax(auto, 400px));
-    grid-auto-rows: minmax(auto, 576px);
-    grid-gap: 16px; */
-  justify-content: space-between;
-  border: 2px solid yellow;
-  flex-wrap: wrap;
-
+  max-width: 1232px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(224px, 1fr));
+  grid-gap: 16px;
 }
