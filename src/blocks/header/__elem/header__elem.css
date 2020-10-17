@@ -1,0 +1,8 @@
+.header__elem {
+  margin-left: 40px;
+  list-style: none;
+}
+
+.header__elem:last-child {
+  margin-right: 0;
+}

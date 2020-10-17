@@ -3,6 +3,10 @@
   transition: all ease 0.8s;
 }
 
+/* .news-card__icon:hover + .news-card__btn {
+  color: green;
+} */
+
 .news-card__icon_bookmark {
   stroke: #b6bcbf;
 }

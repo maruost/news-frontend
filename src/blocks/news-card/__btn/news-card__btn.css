@@ -12,10 +12,6 @@
   font-weight: 500;
 }
 
-.news-card__btn_disabled {
-  display: none;
-}
-
 .news-card__btn:last-child {
   margin-right: 0;
 }

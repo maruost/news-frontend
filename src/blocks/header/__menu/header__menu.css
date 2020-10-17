@@ -6,4 +6,10 @@
   padding-inline-start: 0;
   margin-block-start: 0;
   margin-block-end: 0;
+  font-size: 16px;
 }
+
+/* .header__menu:last-child {
+  margin-right: 0;
+}
+} */

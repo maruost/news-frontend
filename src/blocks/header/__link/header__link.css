@@ -2,13 +2,10 @@
   text-decoration: none;
   color: inherit;
   opacity: 0.5;
-  margin-right: 40px;
-  padding-top: 0;
-  padding-bottom: 30px;
-  list-style: none;
   display: inline;
   line-height: 24px;
-
+  padding-bottom: 30px;
+  white-space: nowrap;
 }
 
 .header__link_active {

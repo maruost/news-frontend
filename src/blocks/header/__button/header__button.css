@@ -10,6 +10,7 @@
   color: inherit;
   align-items: center;
   display: flex;
+  justify-content: center;
 }
 
 .header__button_disabled {
