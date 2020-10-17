@@ -11,6 +11,8 @@
   align-items: center;
   display: flex;
   justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
 }
 
 .header__button_disabled {

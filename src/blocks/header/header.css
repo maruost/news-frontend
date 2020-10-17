@@ -5,16 +5,20 @@
 @import url(./__link/header__link.css);
 @import url(./__button/header__button.css);
 @import url(./__icon/header__icon.css);
+@import url(./__menu-icon-wrapper/header__menu-icon-wrapper.css);
 @import url(./__menu-icon/header__menu-icon.css);
 @import url(./__line/header__line.css);
 @import url(./__logo/header__logo.css);
+@import url(./__fill/header__fill.css);
 .header {
   /* border-bottom: 1px solid rgb(209, 210, 214, 0.5); */
   border-color: white;
   color: white;
   fill: white;
+  /* background-color: white; */
   /* height: 80px; */
   position: relative;
+  /* opacity: 0; */
 }
 
 .header_theme_dark {
@@ -22,6 +26,29 @@
   /* border-bottom: 1px solid rgb(26, 27, 34, 0.2); */
   color: #1a1b22;
   fill: #1a1b22;
+  /* background-color:  #1a1b22; */
+  /* opacity: 0; */
+}
+
+.header.header_menu-is-opened {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100500;
+
+}
+
+.header.header_menu-is-opened::after {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000000000;
 }
 
 @media screen and (max-width: 768px) {
@@ -56,23 +83,7 @@
 }
 
 @media screen and (max-width: 555px) {
-  /* .header {
-      background-color: #1A1B22;
-    } */
 
-  .header {
-    position: fixed;
-    width: 94%;
-    top: 0;
-    left: 0;
-    background-color: #1A1B22;
-    z-index: 100500;
-  }
-
-  .header_theme_dark {
-    background-color: rgba(0, 0, 0, 0.2)
-
-  }
   .header__line {
     height: 56px;
   }
@@ -85,6 +96,7 @@
   .header__menu {
     padding-top: 35px;
     font-size: 18px;
+    display: none;
   }
 
   .header__elem {
@@ -108,13 +120,9 @@
     width: 100%;
     display: block;
   }
-  .header__menu {
-    /* display: none; */
-    display: block;
-  }
 
-  .header__menu-icon {
-    display: block;
+  .header__menu-icon-wrapper {
+    display: flex;
   }
 }
 

@@ -1,3 +1,47 @@
 .header__menu-icon {
-  display: none;
-}
+    position: relative;
+    width: 16px;
+    height: 2px;
+  }
+
+  .header__menu-icon::before {
+    position: absolute;
+    left: 0;
+    top: -3px;
+    content: '';
+    width: 16px;
+    height: 0.1px;
+    border: 2px solid;
+    box-sizing: border-box;
+    transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
+
+  }
+
+  .header__menu-icon::after {
+    position: absolute;
+    left: 0;
+    top: 3px;
+    content: '';
+    width: 16px;
+    height: 0.1px;
+    border: 2px solid;
+    box-sizing: border-box;
+    transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
+  }
+
+  .header__menu-icon.header__menu-icon_active {
+    background-color: transparent;
+  }
+
+  .header__menu-icon.header__menu-icon_active::before {
+    transform: rotate(45deg);
+    top: 0;
+    transition: top 0.2s linear, transform 0.2s ease-in 0.2s;
+  }
+
+  .header__menu-icon.header__menu-icon_active::after {
+    transform: rotate(-45deg);
+    top: 0;
+    transition: top 0.2s linear, transform 0.2s ease-in 0.2s;
+  }
+

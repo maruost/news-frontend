@@ -1,6 +1,7 @@
 .header__elem {
   margin-left: 40px;
   list-style: none;
+  cursor: pointer;
 }
 
 .header__elem:last-child {
