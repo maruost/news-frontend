@@ -6,4 +6,6 @@
   margin: 0 auto;
   padding-bottom: 18px;
   padding-top: 18px;
+  z-index: 2;
+  position: relative;
 }
