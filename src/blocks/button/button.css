@@ -12,6 +12,10 @@
   background-color: #FFFFFF;
 }
 
+.button:active, .button:focus {
+  outline: none;
+}
+
 .button_active {
   background-color: #2F71E5;
   transition: background-color 0.8s ease;
@@ -50,5 +54,7 @@
   width: 168px;
   height: 64px;
 }
+
+
 
 

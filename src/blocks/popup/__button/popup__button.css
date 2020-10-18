@@ -1,3 +1,7 @@
 .popup__button {
   margin: 30px auto 16px;
 }
+
+.popup__link:active, .popup__link:focus {
+  outline: none;
+}

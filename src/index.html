@@ -133,7 +133,10 @@
     <!-- попап открывается по модификатору popup_is-opened -->
     <div id="popup-signin" class="popup">
       <div class="popup__content">
-        <img src="./images/close-icon.svg" alt="" class="popup__close" id="popup-signin-close">
+        <svg class="popup__close" id="popup-signin-close" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#fff" xmlns:v="https://vecta.io/nano">
+          <path d="M22.357 20l8.822 8.822-2.357 2.357-10.47-10.47a1 1 0 0 1 0-1.414l10.47-10.47 2.357 2.357-8.82 8.82z"/>
+          <path d="M18.13 20L9.31 28.822l2.357 2.357 10.47-10.47a1 1 0 0 0 0-1.414l-10.47-10.47L9.31 11.18 18.13 20z"/>
+        </svg>
         <h3 class="popup__title">Вход</h3>
         <form class="popup__form" name="login">
           <h4 class="popup__subtitle">Email</h4>
@@ -146,14 +149,17 @@
           <span class="popup__error" data-for="password"></span>
           <!-- кнопка активна по модификатору button_active, залочена при button_disabled -->
           <button type class="button button_size_l popup__button button_disabled" disabled>Войти</button>
-          <p class="popup__info">или <a href="" class="popup__link">Зарегистрироваться</a></p>
+          <p class="popup__info">или <button class="popup__link">Зарегистрироваться</button></p>
         </form>
       </div>
     </div>
 
     <div id="popup-signup" class="popup">
       <div class="popup__content">
-        <img src="./images/close-icon.svg" alt="" class="popup__close" id="popup-signup-close">
+        <svg class="popup__close" id="popup-signup-close" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#fff" xmlns:v="https://vecta.io/nano">
+          <path d="M22.357 20l8.822 8.822-2.357 2.357-10.47-10.47a1 1 0 0 1 0-1.414l10.47-10.47 2.357 2.357-8.82 8.82z"/>
+          <path d="M18.13 20L9.31 28.822l2.357 2.357 10.47-10.47a1 1 0 0 0 0-1.414l-10.47-10.47L9.31 11.18 18.13 20z"/>
+        </svg>
         <h3 class="popup__title">Регистрация</h3>
         <form class="popup__form" name="registration">
           <h4 class="popup__subtitle">Email</h4>
@@ -177,7 +183,10 @@
 
     <div id="popup-success" class="popup">
       <div class="popup__content">
-        <img src="./images/close-icon.svg" alt="" class="popup__close" id="popup-success-close">
+        <svg class="popup__close" id="popup-success-close" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#fff" xmlns:v="https://vecta.io/nano">
+          <path d="M22.357 20l8.822 8.822-2.357 2.357-10.47-10.47a1 1 0 0 1 0-1.414l10.47-10.47 2.357 2.357-8.82 8.82z"/>
+          <path d="M18.13 20L9.31 28.822l2.357 2.357 10.47-10.47a1 1 0 0 0 0-1.414l-10.47-10.47L9.31 11.18 18.13 20z"/>
+        </svg>
         <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
         <p class="popup_info popup__info_success"><button class="popup__link">Войти</button></p>
         </form>
@@ -194,7 +203,7 @@
     </section>
     <section class="about main__about">
       <div class="about__avatar">
-        <img src="<%=require('./images/image-03.png')%>" alt="" class="about__pic">
+        <img src="<%=require('./images/image-03.png')%>" alt="Аватар пользователя" class="about__pic">
       </div>
       <div class="about__info">
         <h2 class="about__title">Об авторе</h2>
@@ -207,14 +216,16 @@
     <nav class="footer__navigation">
       <p class="footer__copyright">&#169; 2020 Supersite, Powered by News API</p>
       <ul class="footer__menu">
-        <ul class="footer__links">
-            <li class ="footer__elem"><a href="./index.html" class="footer__link">Главная</a></li>
-            <li class ="footer__elem"><a href="https://praktikum.yandex.ru/" class="footer__link" target="_blank">Яндекс.Практикум</a></li>
-        </ul>
-        <ul class="footer__icons">
-            <li class ="footer__elem"><a href="https://github.com/maruost" class="footer__icon" target="_blank"><img src="<%=require('./images/github.svg')%>" alt=""></a></li>
-            <li class ="footer__elem"><a href="https://www.facebook.com/" class="footer__icon" target="_blank"><img src="<%=require('./images/fb.svg')%>" alt=""></a></li>
-        </ul>
+        <li class="footer__links">
+          <ul class="footer__links"><li class ="footer__elem"><a href="./index.html" class="footer__link">Главная</a></li>
+              <li class ="footer__elem"><a href="https://praktikum.yandex.ru/" class="footer__link" target="_blank">Яндекс.Практикум</a></li>
+          </ul class="footer__links">
+        </li>
+        <li class="footer__icons">
+            <ul class="footer__icons"><li class ="footer__elem"><a href="https://github.com/maruost" class="footer__icon" target="_blank"><img src="<%=require('./images/github.svg')%>" alt="github-icon"></a></li>
+                <li class ="footer__elem"><a href="https://www.facebook.com/" class="footer__icon" target="_blank"><img src="<%=require('./images/fb.svg')%>" alt="facebook-icon"></a></li>
+            </ul class="footer__icons">
+        </li>
       </ul>
     </nav>
   </footer>

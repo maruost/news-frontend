@@ -33,9 +33,11 @@
     flex-direction: column;
     justify-content: space-between;
     height: 74px;
+    padding-left: 0;
   }
 
   .footer__link {
     padding-right: 0;
   }
 }
+

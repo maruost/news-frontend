@@ -12,6 +12,10 @@
   font-weight: 500;
 }
 
+.news-card__btn:active, .news-card__btn:focus {
+  outline: none;
+}
+
 .news-card__btn:last-child {
   margin-right: 0;
 }
