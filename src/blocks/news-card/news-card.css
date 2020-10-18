@@ -21,4 +21,29 @@
   position: relative;
 }
 
+@media screen and (max-width: 870px) {
+  .news-card__title {
+    font-size: 22px;
+    line-height: 24px;
+    padding-bottom: 10px;
+  }
+
+  .news-card__text {
+    font-size: 16px;
+    line-height: 22px;
+    padding-bottom: 12px;
+  }
+
+  .news-card__btn {
+    max-width: 100px;
+  }
+}
+
+@media screen and (max-width: 730px) {
+
+  .news-card__btn {
+    max-width: 200px;
+  }
+}
+
 

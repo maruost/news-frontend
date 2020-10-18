@@ -7,3 +7,28 @@
   color: white;
   max-width: 608px;
 }
+
+@media screen and (max-width: 768px) {
+  .lead__title {
+    line-height: 40px;
+    font-size: 36px;
+    padding-bottom: 16px;
+    max-width: 385px;
+  }
+
+  .lead__about {
+    padding-bottom: 48px;
+    max-width: 452px;
+  }
+
+  .lead__container {
+    max-width: 452px;;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .lead__about {
+    padding-bottom: 122px;
+  }
+}

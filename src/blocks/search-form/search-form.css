@@ -6,11 +6,16 @@
   max-width: 608px;
 }
 
+@media screen and (max-width: 768px) {
+  .search-form {
+    max-width: 452px;
+  }
+}
 
 @media screen and (max-width: 500px) {
   .search-form__button {
-  position: relative;
-  width: 100%;
-  margin-top: 16px;
+    position: relative;
+    width: 100%;
+    margin-top: 16px;
   }
 }

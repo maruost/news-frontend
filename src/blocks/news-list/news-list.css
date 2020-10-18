@@ -2,6 +2,26 @@
   max-width: 1232px;
   position: relative;
   display: grid;
-  grid-template-columns: repeat(3, minmax(224px, 1fr));
+  grid-template-columns: repeat(3, minmax(200px, 1fr));
   grid-gap: 16px;
+}
+
+@media screen and (max-width: 870px) {
+  .news-list {
+    grid-gap: 8px;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .news-list {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    grid-gap: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .news-list {
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
+    grid-gap: 10px;
+  }
 }

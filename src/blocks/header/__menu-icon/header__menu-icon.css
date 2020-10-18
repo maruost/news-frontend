@@ -10,7 +10,6 @@
     top: -3px;
     content: '';
     width: 16px;
-    height: 0.1px;
     border: 2px solid;
     box-sizing: border-box;
     transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
@@ -23,7 +22,6 @@
     top: 3px;
     content: '';
     width: 16px;
-    height: 0.1px;
     border: 2px solid;
     box-sizing: border-box;
     transition: transform 0.2s ease-in, top 0.2s linear 0.2s;
