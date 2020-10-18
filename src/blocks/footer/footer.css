@@ -5,6 +5,7 @@
 @import url(./__icon/footer__icon.css);
 @import url(./__links/footer__links.css);
 @import url(./__icons/footer__icons.css);
+@import url(./__elem/footer__elem.css);
 
 .footer {
   max-width: 1232px;

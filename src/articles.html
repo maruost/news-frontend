@@ -189,14 +189,14 @@
     <nav class="footer__navigation">
       <p class="footer__copyright">&#169; 2020 Supersite, Powered by News API</p>
       <ul class="footer__menu">
-        <div class="footer__links">
-          <li><a href="./index.html" class="footer__link">Главная</a></li>
-          <li><a href="https://praktikum.yandex.ru/" class="footer__link" target="_blank">Яндекс.Практикум</a></li>
-        </div>
-        <div class="footer__icons">
-          <li><a href="https://github.com/maruost" class="footer__icon" target="_blank"><img src="./images/github.svg" alt=""></a></li>
-          <li><a href="https://www.facebook.com/" class="footer__icon" target="_blank"><img src="./images/fb.svg" alt=""></a></li>
-        </div>
+        <ul class="footer__links">
+            <li class ="footer__elem"><a href="./index.html" class="footer__link">Главная</a></li>
+            <li class ="footer__elem"><a href="https://praktikum.yandex.ru/" class="footer__link" target="_blank">Яндекс.Практикум</a></li>
+        </ul>
+        <ul class="footer__icons">
+            <li class ="footer__elem"><a href="https://github.com/maruost" class="footer__icon" target="_blank"><img src="<%=require('./images/github.svg')%>" alt=""></a></li>
+            <li class ="footer__elem"><a href="https://www.facebook.com/" class="footer__icon" target="_blank"><img src="<%=require('./images/fb.svg')%>" alt=""></a></li>
+        </ul>
       </ul>
     </nav>
   </footer>

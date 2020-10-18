@@ -1,4 +1,5 @@
 .news-card__image {
+  background-image: url(../../../images/image_06.png);
   position: relative;
   width: 100%;
   max-width: 400px;
