@@ -10,7 +10,6 @@
 
 @media screen and (max-width: 768px) {
   .main__lead {
-    margin: 38px auto 0;
     padding-bottom: 48px;
   }
 }

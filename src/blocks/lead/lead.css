@@ -5,10 +5,17 @@
 
 .lead {
   color: white;
-  max-width: 608px;
+  background-image: url(../../images/lead__cover.png);
+  margin-top: -100px;
+  padding-top: 160px;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 @media screen and (max-width: 768px) {
+  .lead {
+    padding-top: 138px;
+  }
   .lead__title {
     line-height: 40px;
     font-size: 36px;
