@@ -1,16 +1,18 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackMd5Hash = require('webpack-md5-hash');
-const webpack = require('webpack');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const path = require("path");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const WebpackMd5Hash = require("webpack-md5-hash");
+const webpack = require("webpack");
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === "development";
 module.exports = {
-  entry: { 'scripts/main.js': './src/scripts/index.js' },
+  entry: {
+    "main": "./src/index.js",
+  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js',
+    path: path.resolve(__dirname, "dist"),
+    filename: "scripts/[name].[chunkhash].js",
   },
   module: {
     rules: [
@@ -18,12 +20,12 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env'],
+            presets: ["@babel/preset-env"],
             plugins: [
-              '@babel/plugin-syntax-dynamic-import',
-              '@babel/plugin-proposal-class-properties',
+              "@babel/plugin-syntax-dynamic-import",
+              "@babel/plugin-proposal-class-properties",
             ],
           },
         },
@@ -32,32 +34,32 @@ module.exports = {
         test: /\.css$/i,
         use: [
           isDev
-            ? 'style-loader'
+            ? "style-loader"
             : {
-              loader: MiniCssExtractPlugin.loader,
-              options: { publicPath: '../' },
-            },
+                loader: MiniCssExtractPlugin.loader,
+                options: { publicPath: "../" },
+              },
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               importLoaders: 2,
             },
           },
-          'postcss-loader',
+          "postcss-loader",
         ],
       },
       {
         test: /\.(png|jpg|gif|ico|svg)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: './images/[name].[ext]',
+              name: "./images/[name].[ext]",
               esModule: false,
             },
           },
           {
-            loader: 'image-webpack-loader',
+            loader: "image-webpack-loader",
             options: {
               optipng: {
                 enabled: true,
@@ -68,29 +70,29 @@ module.exports = {
       },
       {
         test: /\.(eot|ttf|woff|woff2)$/,
-        loader: 'file-loader?name=./vendor/[name].[ext]',
+        loader: "file-loader?name=./vendor/[name].[ext]",
       },
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: 'styles/style.[contenthash].css' }),
+    new MiniCssExtractPlugin({ filename: "styles/[name].[contenthash].css" }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
-      cssProcessor: require('cssnano'),
+      cssProcessor: require("cssnano"),
       cssProcessorPluginOptions: {
-        preset: ['default'],
+        preset: ["default"],
       },
       canPrint: true,
     }),
     new HtmlWebpackPlugin({
       inject: false,
-      template: './src/index.html',
-      filename: 'index.html',
+      template: "./src/index.html",
+      filename: "index.html",
     }),
     new HtmlWebpackPlugin({
       inject: false,
-      template: './src/articles.html',
-      filename: 'articles.html',
+      template: "./src/articles.html",
+      filename: "articles.html",
     }),
     new WebpackMd5Hash(),
     new webpack.DefinePlugin({
