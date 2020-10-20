@@ -56,5 +56,10 @@
 }
 
 
+@media screen and (max-width: 320px) {
+  .button_size_m {
+    max-width: 270px;
+    }
+  }
 
 

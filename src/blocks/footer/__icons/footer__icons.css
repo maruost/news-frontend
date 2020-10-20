@@ -2,5 +2,6 @@
   display: flex;
   justify-content: space-between;
   list-style-type: none;
-  width: 150px;
+  /* max-width: 100px; */
+  padding: 0 0;
 }
