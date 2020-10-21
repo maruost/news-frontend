@@ -1,9 +1,13 @@
 .header__elem {
-  margin-left: 40px;
+  padding-left: 40px;
   list-style: none;
   cursor: pointer;
 }
 
 .header__elem:last-child {
   margin-right: 0;
+}
+
+.header__elem.header__elem_disabled {
+  display: none;
 }

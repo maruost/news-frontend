@@ -28,17 +28,20 @@
                 >
               </li>
               <!-- скрывать и показывать 'элементы используя hide -->
-              <li class="header__elem">
+              <li class="header__elem hide">
                 <a href="./articles.html" class="header__link"
                   >Сохранённые статьи</a
                 >
               </li>
               <li class="header__elem">
-                <button class="header__button">Авторизоваться</button>
+                <button id="reg-header-btn" class="header__button">Регистрация</button>
+              </li>
+              <li class="header__elem hide">
+                <button id="auth-header-btn" class="header__button">Войти</button>
               </li>
               <!-- вставить Имя через TextContent в зависимости от авторизации -->
               <li class="header__elem hide">
-                <button class="header__button">
+                <button id="user-header-btn" class="header__button">
                   Имя
                   <svg
                     class="header__icon"
@@ -60,6 +63,7 @@
             <!-- при клике на иконку, чтобы раскрыть меню добавляется header__menu-icon_active, для header - header_menu-is-opened, для header__menu - header__menu_is-opened, для header__fill - header__fill_menu-is-opened -->
             <div class="header__menu-icon"></div>
           </div>
+
         </nav>
       </div>
     </header>
@@ -91,7 +95,8 @@
         <div class="search-results__container">
           <h2 class="search-results__title">Результаты поиска</h2>
           <div class="news-list search-results__news-list">
-            <!-- <template id="news-card-template"> -->
+
+            <template id="news-card-template">
             <div class="news-card">
               <img src="<%=require('./images/image_08.png')%>" alt="растение" class="news-card__image">
                 <div class="news-card__btns news-card__btns_right">
@@ -130,82 +135,8 @@
               </div>
               <p class="news-card__source">Лента.ру</p>
             </div>
-            <div class="news-card">
-              <img src="<%=require('./images/image_04.png')%>" alt="растение" class="news-card__image">
-                <div class="news-card__btns news-card__btns_right">
-                  <button class="news-card__btn hide">
-                    Войдите, чтобы сохранять статьи
-                  </button>
-                  <button class="news-card__btn">
-                    <svg
-                      class="news-card__icon news-card__icon_bookmark"
-                      width="14"
-                      height="19"
-                      viewBox="0 0 14 19"
-                    >
-                      <path
-                        d="M6.38218 12.7137L1 16.9425V1L13 1V16.9425L7.61782 12.7137L7 12.2283L6.38218 12.7137Z"
-                        stroke-width="2"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              <div class="news-card__description">
-                <div class="news-card__container">
-                  <p class="news-card__date">2 августа, 2019</p>
-                  <article class="news-card__article">
-                    <h3 class="news-card__title">
-                      Лесные огоньки: история одной фотографии
-                    </h3>
-                    <p class="news-card__text">
-                      Фотограф отвлеклась от освещения суровой политической
-                      реальности Мексики, чтобы запечатлеть ускользающую красоту
-                      одного из местных чудес природы.
-                    </p>
-                  </article>
-                </div>
-              </div>
-              <p class="news-card__source">Медуза</p>
-            </div>
-            <div class="news-card">
-              <img src="<%=require('./images/image_07.png')%>" alt="растение" class="news-card__image">
-                <div class="news-card__btns news-card__btns_right">
-                  <button class="news-card__btn hide">
-                    Войдите, чтобы сохранять статьи
-                  </button>
-                  <button class="news-card__btn">
-                    <svg
-                      class="news-card__icon news-card__icon_bookmark news-card__icon_marked"
-                      width="14"
-                      height="19"
-                      viewBox="0 0 14 19"
-                    >
-                      <path
-                        d="M6.38218 12.7137L1 16.9425V1L13 1V16.9425L7.61782 12.7137L7 12.2283L6.38218 12.7137Z"
-                        stroke-width="2"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              <div class="news-card__description">
-                <div class="news-card__container">
-                  <p class="news-card__date">2 августа, 2019</p>
-                  <article class="news-card__article">
-                    <h3 class="news-card__title">
-                      «Первозданная тайга»: новый фотопроект Игоря Шпиленка
-                    </h3>
-                    <p class="news-card__text">
-                      Знаменитый фотограф снимает первозданные леса России,
-                      чтобы рассказать о необходимости их сохранения. В этот раз
-                      он отправился в Двинско-Пинежскую тайгу, где...
-                    </p>
-                  </article>
-                </div>
-              </div>
-              <p class="news-card__source">РИА</p>
-            </div>
+            </template>
 
-            <!-- </template> -->
           </div>
           <button class="button button_size_m search-results__button">
             Показать еще
@@ -295,9 +226,7 @@
               minlength="2"
               maxlength="30"
             />
-            <span class="popup__error" data-for="email"
-              >Неправильный формат email</span
-            >
+            <span class="popup__error" data-for="email"></span>
             <h4 class="popup__subtitle">Пароль</h4>
             <input
               type="text"
@@ -320,11 +249,10 @@
               maxlength="30"
             />
             <span class="popup__error" data-for="name"></span>
-            <span class="popup__error popup__error_btn" data-for="button"
-              >Такой пользователь уже существует</span
-            >
+            <span class="popup__error popup__error_btn" data-for="button"></span>
             <button
               class="button button_size_l button_color_blue popup__button button_disabled"
+              disabled
             >
               Зарегистрироваться
             </button>

@@ -1,7 +1,7 @@
 .header__menu-icon {
     position: relative;
-    width: 16px;
-
+    /* width: 16px;
+    height: 16px; */
   }
 
   .header__menu-icon::before {
