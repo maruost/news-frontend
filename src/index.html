@@ -75,20 +75,22 @@
             Находите самые свежие статьи на любую тему и сохраняйте в своём
             личном кабинете.
           </p>
-          <div class="search-form lead__search-form">
+          <form class="search-form lead__search-form" name="search">
             <input
               type="search"
               class="search-form__field"
               placeholder="Введите тему новости"
+              name="search-field"
               required
             />
             <!-- кнопка активна по модификатору button_active, залочена при button_disabled -->
             <button
-              class="button button_active button_size_s search-form__button"
+              class="button button_active button_size_s search-form__button button_disabled"
             >
               Искать
             </button>
-          </div>
+            <span class="error" data-for="search-field"></span>
+          </form>
         </div>
       </section>
       <section class="search-results main__search-results">
@@ -98,7 +100,7 @@
 
             <template id="news-card-template">
             <div class="news-card">
-              <img src="<%=require('./images/image_08.png')%>" alt="растение" class="news-card__image">
+              <img src="" alt="растение" class="news-card__image">
                 <div class="news-card__btns news-card__btns_right">
                   <button class="news-card__btn">
                     Войдите, чтобы сохранять статьи
@@ -171,8 +173,9 @@
               required
               minlength="2"
               maxlength="30"
+              data-for="input"
             />
-            <span class="popup__error" data-for="email"></span>
+            <span class="error" data-for="email"></span>
             <h4 class="popup__subtitle">Пароль</h4>
             <input
               type="text"
@@ -182,8 +185,9 @@
               required
               minlength="2"
               maxlength="30"
+              data-for="input"
             />
-            <span class="popup__error" data-for="password"></span>
+            <span class="error" data-for="password"></span>
             <!-- кнопка активна по модификатору button_active, залочена при button_disabled -->
             <button
               class="button button_size_l popup__button button_disabled"
@@ -225,8 +229,9 @@
               required
               minlength="2"
               maxlength="30"
+              data-for="input"
             />
-            <span class="popup__error" data-for="email"></span>
+            <span class="error" data-for="email"></span>
             <h4 class="popup__subtitle">Пароль</h4>
             <input
               type="text"
@@ -236,8 +241,9 @@
               required
               minlength="2"
               maxlength="30"
+              data-for="input"
             />
-            <span class="popup__error" data-for="password"></span>
+            <span class="error" data-for="password"></span>
             <h4 class="popup__subtitle">Имя</h4>
             <input
               type="text"
@@ -247,9 +253,10 @@
               required
               minlength="2"
               maxlength="30"
+              data-for="input"
             />
-            <span class="popup__error" data-for="name"></span>
-            <span class="popup__error popup__error_btn" data-for="button"></span>
+            <span class="error" data-for="name"></span>
+            <span class="error error_btn" data-for="button"></span>
             <button
               class="button button_size_l button_color_blue popup__button button_disabled"
               disabled
