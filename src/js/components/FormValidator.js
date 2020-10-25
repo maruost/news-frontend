@@ -6,16 +6,15 @@ export default class FormValidator {
   }
 
   _getErrorSpan = (element) => {
-    return this._form.querySelector(`.popup__error[data-for="${element.name}"]`)
-  }
+    return this._form.querySelector(`.error[data-for="${element.name}"]`);
+  };
 
   init = () => {
-    this._button = this._form.querySelector('.popup__button');
-    this._inputs = Array.from(this._form.querySelectorAll('.popup__input'))
-    this._errorsElements = Array.from(this._form.querySelectorAll('.popup__error'));
+    this._button = this._form.querySelector(".button");
+    this._inputs = Array.from(this._form.querySelectorAll("input"));
+    this._errorsElements = Array.from(this._form.querySelectorAll(".error"));
     this.setEventListeners();
-
-  }
+  };
 
   _handlerInputForm = (event) => {
     this._checkInputValidity(event.target);
@@ -24,7 +23,7 @@ export default class FormValidator {
     } else {
       this.setSubmitButtonState(false);
     }
-  }
+  };
 
   _checkInputValidity = (input) => {
     if (input.validity.valid) {
@@ -33,7 +32,11 @@ export default class FormValidator {
     }
 
     if (input.validity.valueMissing) {
-      this._getErrorSpan(input).textContent = this._errorMessages.empty;
+      if (this._form.name !== "search") {
+        this._getErrorSpan(input).textContent = this._errorMessages.empty;
+      } else {
+        this._getErrorSpan(input).textContent = this._errorMessages.missKeyWord;
+      }
       return false;
     }
 
@@ -42,14 +45,14 @@ export default class FormValidator {
       return false;
     }
 
-    if (input.validity.typeMismatch && input.type === 'url') {
+    if (input.validity.typeMismatch && input.type === "url") {
       this._getErrorSpan(input).textContent = this._errorMessages.wrongType;
-      return false
+      return false;
     }
 
-    if (input.validity.typeMismatch && input.type === 'email') {
+    if (input.validity.typeMismatch && input.type === "email") {
       this._getErrorSpan(input).textContent = this._errorMessages.printEmail;
-      return false
+      return false;
     }
 
     return input.checkValidity();
@@ -57,26 +60,25 @@ export default class FormValidator {
 
   setSubmitButtonState = (state) => {
     if (!state) {
-      this._button.setAttribute('disabled', true);
-      this._button.classList.remove('button_active');
-      this._button.classList.add('button_disabled')
-
+      this._button.setAttribute("disabled", true);
+      this._button.classList.remove("button_active");
+      this._button.classList.add("button_disabled");
     } else {
-      this._button.removeAttribute('disabled');
-      this._button.classList.add('button_active');
-      this._button.classList.remove('button_disabled')
+      this._button.removeAttribute("disabled");
+      this._button.classList.add("button_active");
+      this._button.classList.remove("button_disabled");
     }
-  }
+  };
 
   resetValidation = () => {
     this._errorsElements.forEach((el) => {
       el.textContent = "";
     });
-  }
+  };
 
   setEventListeners = () => {
-    this._form.addEventListener('input', (event) => this._handlerInputForm(event))
-
+    this._form.addEventListener("input", (event) =>
+      this._handlerInputForm(event)
+    );
   };
 }
-
