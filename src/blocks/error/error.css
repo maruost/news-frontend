@@ -1,0 +1,12 @@
+.error {
+  color: #ff0000;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 0 0;
+}
+
+.error_btn {
+text-align: center;
+display: block;
+margin: 15px auto -20px;
+}
