@@ -93,8 +93,24 @@
           </form>
         </div>
       </section>
-      <section class="search-results main__search-results">
-        <div class="search-results__container">
+      <section class="search-results main__search-results hide">
+        <div class="loader search-results__loader hide">
+          <!-- <div class="loader__container search-results__loader"> -->
+            <div class="loader__icon"></div>
+            <p class="loader__subtitle">Идет поиск новостей...
+            </p>
+          <!-- </div> -->
+        </div>
+        <div class="not-found search-results__not-found hide">
+          <!-- <div class="not-found__container search-results__not"> -->
+            <div class="not-found__icon"></div>
+            <h3 class="not-found__title">Ничего не найдено</h3>
+            <p class="not-found__subtitle">К сожалению, по вашему запросу
+              ничего не найдено.
+            </p>
+          <!-- </div> -->
+        </div>
+        <div class="search-results__container hide">
           <h2 class="search-results__title">Результаты поиска</h2>
           <div class="news-list search-results__news-list">
 
@@ -140,10 +156,12 @@
             </template>
 
           </div>
+
           <button class="button button_size_m search-results__button">
             Показать еще
           </button>
         </div>
+
       </section>
       <!-- попап открывается по модификатору popup_is-opened -->
       <div id="popup-signin" class="popup">
@@ -293,15 +311,7 @@
         </div>
       </div>
       <!-- лоадер перерисовывается через JS анимация загрузки модификатор loader__icon_loading, иконка не найдено loader_icon_not-found -->
-      <section class="loader main__loader hide">
-        <div class="loader__container">
-          <div class="loader__icon loader__icon_loading"></div>
-          <h3 class="loader__title">Ничего не найдено</h3>
-          <p class="loader__subtitle">
-            К сожалению по вашему запросу ничего не найдено.
-          </p>
-        </div>
-      </section>
+
       <section class="about main__about">
         <div class="about__avatar">
           <img
