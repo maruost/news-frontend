@@ -2,6 +2,10 @@
 @import url(./__title/search-results__title.css);
 @import url(./__button/search-results__button.css);
 @import url(./__news-list/search-results__news-list.css);
+@import url(./__title/search-results__title.css);
+@import url(./__loader/search-results__loader.css);
+@import url(./__not-found/search-results__not-found.css);
+
 
 .search-results {
   padding-top: 80px;

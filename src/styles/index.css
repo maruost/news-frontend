@@ -16,6 +16,7 @@
 @import url(../blocks/saved-articles/saved-articles.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/loader/loader.css);
-@import url(../blocks/hide/hide.css);
+@import url(../blocks/not-found/not-found.css);
 @import url(../blocks/span-accent/span-accent.css);
 @import url(../blocks/error/error.css);
+@import url(../blocks/hide/hide.css);

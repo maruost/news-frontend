@@ -1,16 +1,16 @@
 @import url(./__icon/loader__icon.css);
 @import url(./__subtitle/loader__subtitle.css);
-@import url(./__title/loader__title.css);
-@import url(./__container/loader__container.css);
 
 .loader {
+  max-width: 356px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
   padding-top: 80px;
   padding-bottom: 80px;
   font-family: Roboto, Arial, Helvetica, sans-serif;
-}
-
-.loader_disabled {
-  display: none;
 }
 
 @media screen and (max-width: 500px) {
@@ -21,10 +21,6 @@
 }
 
 @media screen and (max-width: 350px) {
-  .loader__title {
-    font-size: 20px;
-  }
-
   .loader__subtitle {
     font-size: 16px;
   }

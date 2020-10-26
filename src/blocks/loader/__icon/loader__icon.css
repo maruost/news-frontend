@@ -2,7 +2,7 @@
   display: block;
 }
 
-.loader__icon_loading {
+.loader__icon {
   width: 50px;
   height: 50px;
   border: 1px solid #444;
@@ -17,12 +17,4 @@
   100% {
     transform: rotate(360deg);
   }
-}
-
-.loader__icon_not-found {
-  background-position: cover;
-  background-repeat: no-repeat;
-  width: 96px;
-  height: 96px;
-  background-image: url(../../../images/not-found.png);
 }
