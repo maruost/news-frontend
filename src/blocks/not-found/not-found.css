@@ -1,0 +1,32 @@
+@import url(./__icon/not-found__icon.css);
+@import url(./__subtitle/not-found__subtitle.css);
+@import url(./__title/not-found__title.css);
+
+.not-found {
+  max-width: 356px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+@media screen and (max-width: 500px) {
+  .not-found {
+    padding-bottom: 40px;
+    padding-top: 40px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .not-found__title {
+    font-size: 20px;
+  }
+
+  .not-found__subtitle {
+    font-size: 16px;
+  }
+}
