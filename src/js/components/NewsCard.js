@@ -6,9 +6,9 @@ export default class NewsCard {
     this._text = text;
     this._source = source;
     this._template = template;
-    console.log(this._template)
   }
 
+  // creating card DOM element
   createCard() {
     const card = this._template.cloneNode(true).querySelector('.news-card');
     card.querySelector('.news-card__image').src = this._link;

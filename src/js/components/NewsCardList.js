@@ -4,14 +4,17 @@ export default class NewsCardList {
     this._cards = cards;
   }
 
+  // adding card to newslist container
   addCard(card) {
     this._container.append(card);
   }
 
+  //render newslist
   renderCard = (res) => {
     this._cards(res).forEach((card) => {
       this.addCard(card)
     });
-  };
+  }
+
 }
 
