@@ -11,6 +11,8 @@ import {
   dateWithMontsName,
 } from "./js/utils/dateFormat";
 
+import SearchResults from "./js/components/SearchResults";
+
 // (function () {
 const registrationButton = document.querySelector("#reg-header-btn");
 const registrationPopup = document.querySelector("#popup-signup");
@@ -31,7 +33,11 @@ const searchButton = document.querySelector(".search-form__button");
 const now = new Date();
 const currentDate = dateFormat(now);
 const prevDate = dateFormat(findPrevDate(now, 7));
-const showMoreButton = document.querySelector('.search-results__button')
+const showMoreButton = document.querySelector(".search-results__button");
+const loader = document.querySelector(".loader");
+const searchResultsContainer = document.querySelector(".search-results");
+const foundResults = document.querySelector(".search-results__container");
+const notFound = document.querySelector(".not-found");
 
 console.log(currentDate, prevDate);
 
@@ -45,7 +51,7 @@ const errorMessages = {
 const config = {
   url:
     NODE_ENV === "production"
-      ? "https://newsapi.org/v2/everything"
+      ? "https://nomoreparties.co/news/v2/everything"
       : "https://newsapi.org/v2/everything",
   headers: {
     authorization: "0c94ed05a1c74e599d2ccbf92efbc3dc",
@@ -154,10 +160,22 @@ const newsList = new NewsCardList({
 //   newsList.renderCard(res);
 // });
 
-const allArticles = [];
+let allArticles = [];
+
+const searchResults = new SearchResults({
+  container: searchResultsContainer,
+  showMoreBtn: showMoreButton,
+  renderNews: newsList.renderCard,
+});
+
+searchResults.init();
+console.log(typeof searchResultsContainer);
 
 searchForm.addEventListener("submit", () => {
   event.preventDefault();
+  allArticles = [];
+  searchResults.setInitialState([searchResultsContainer, foundResults, notFound]);
+  searchResults.renderLoading(true);
   newsApi
     .getCards({
       request: searchForm.elements["search-field"].value,
@@ -166,22 +184,29 @@ searchForm.addEventListener("submit", () => {
       pageSize: 100,
     })
     .then((res) => {
-      res.articles.forEach((item) => {
-        allArticles.push(item);
-      });
-      newsList.renderCard(allArticles.splice(0, 3));
+      if (res.articles.length !== 0) {
+        res.articles.forEach((item) => {
+          allArticles.push(item);
+        });
+        newsList.renderCard(allArticles.splice(0, 3));
+        searchResults.renderResults();
+      } else {
+        console.log('whf?!!')
+        searchResults.renderNotFound();
+      }
     })
-    .catch((err) => console.log(err));
+    .then(() => searchResults.setEventListeners(allArticles))
+    .catch((err) => searchResults.renderError())
+    .finally(() => searchResults.renderLoading(false));
 });
 
-showMoreButton.addEventListener('click', () => {
-  if (allArticles.length > 3) {
-    newsList.renderCard(allArticles.splice(0, 3));
-  } else {
-    newsList.renderCard(allArticles.splice(0, 3));
-    showMoreButton.setAttribute("disabled", true);
-    showMoreButton.classList.add("button_disabled");
-  }
-});
+// showMoreButton.addEventListener("click", () => {
+//   if (allArticles.length > 3) {
+//     newsList.renderCard(allArticles.splice(0, 3));
+//   } else {
+//     newsList.renderCard(allArticles.splice(0, 3));
+//     showMoreButton.classList.add("hide");
+//   }
+// });
 
 // })();
