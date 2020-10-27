@@ -12,6 +12,7 @@ import {
 } from "./js/utils/dateFormat";
 
 import SearchResults from "./js/components/SearchResults";
+import MainAPI from "./js/api/MainApi";
 
 // (function () {
 const registrationButton = document.querySelector("#reg-header-btn");
@@ -48,6 +49,37 @@ const errorMessages = {
   printEmail: "Введите действующий e-mail",
   missKeyWord: "Нужно ввести ключевое слово",
 };
+
+const configMainApi = {
+  url:
+    NODE_ENV === "production"
+      ? "https://api.my-news-explorer.gq/"
+      : "http://localhost:3000/",
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
+const mainApi = new MainAPI(configMainApi);
+
+signUpForm.addEventListener("submit", () => {
+  mainApi
+    .signup({
+      partOfUrl: "signup",
+      email: signUpForm.elements.email.value,
+      name: signUpForm.elements.name.value,
+      password: signUpForm.elements.password.value,
+    })
+    .then((res) => {
+      localStorage.setItem('name', `${res.data.name}`);
+      localStorage.setItem('email', `${res.data.email}`);
+      localStorage.setItem('password', `${res.data.password}`);
+    })
+    .catch((err) => console.log(err.json()));
+});
+
+console.log(localStorage.getItem('name'));
+
 const config = {
   url:
     NODE_ENV === "production"
@@ -91,6 +123,10 @@ const headerElem = new Header({
 
 headerElem.init();
 headerElem.setEventListeners();
+headerElem.render({
+  isLogged: true,
+  userName: 'GRETTA',
+});
 
 // validation
 
@@ -134,7 +170,6 @@ signUpForm.addEventListener("submit", () => {
 
 const createCardsArray = function (res) {
   const array = [];
-  console.log(res);
   res.forEach((card) => {
     array.push(
       new NewsCard({
@@ -169,12 +204,19 @@ const searchResults = new SearchResults({
 });
 
 searchResults.init();
-console.log(typeof searchResultsContainer);
 
+// нужно исправить: кнопка показать еще скрывается когда ищещь что-то новое
+// какие-то левые новости остаются в списке новостей
 searchForm.addEventListener("submit", () => {
   event.preventDefault();
   allArticles = [];
-  searchResults.setInitialState([searchResultsContainer, foundResults, notFound]);
+  newsList.clear();
+  showMoreButton.classList.remove("hide");
+  searchResults.setInitialState([
+    searchResultsContainer,
+    foundResults,
+    notFound,
+  ]);
   searchResults.renderLoading(true);
   newsApi
     .getCards({
@@ -191,11 +233,13 @@ searchForm.addEventListener("submit", () => {
         newsList.renderCard(allArticles.splice(0, 3));
         searchResults.renderResults();
       } else {
-        console.log('whf?!!')
+        console.log("whf?!!");
         searchResults.renderNotFound();
       }
+    }) // вынести кнопку шоу море за пределы события сабмита
+    .then(() => {
+      searchResults.setEventListeners(allArticles);
     })
-    .then(() => searchResults.setEventListeners(allArticles))
     .catch((err) => searchResults.renderError())
     .finally(() => searchResults.renderLoading(false));
 });

@@ -22,3 +22,7 @@
 .header__button:active, .header__button:focus {
   outline: none;
 }
+
+.header__button_entry {
+  border: 0px;
+}

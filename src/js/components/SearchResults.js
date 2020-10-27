@@ -67,6 +67,8 @@ export default class SearchResults {
   }
 
   setEventListeners(articles) {
+    console.log('peredali')
+    console.log(articles);
     this._button.addEventListener("click", () => {
       this._showMore(articles);
     });
@@ -79,5 +81,6 @@ export default class SearchResults {
       this._newsList(articles.splice(0, 3));
       this._hideElement(this._button);
     }
+
   }
 }
