@@ -11,6 +11,8 @@ import {
   dateWithMontsName,
 } from "./js/utils/dateFormat";
 
+import { isUserLogged } from "./js/utils/checkLogin";
+
 import SearchResults from "./js/components/SearchResults";
 import MainAPI from "./js/api/MainApi";
 
@@ -38,25 +40,26 @@ import {
   searchResultsContainer,
   foundResults,
   notFound,
+  exitButton,
 } from "./js/constants/constants";
-import { sign } from "core-js/fn/number";
+
+const headerElem = new Header({
+  header: header,
+});
+
+// initialization header hamburger menu
+
+headerElem.init();
+headerElem.setEventListeners();
+headerElem.render({
+  isLogged: isUserLogged(),
+  userName: localStorage.getItem("name"),
+});
 
 // date
 const now = new Date();
 const currentDate = dateFormat(now);
 const prevDate = dateFormat(findPrevDate(now, 7));
-
-// rendering humburger-menu
-
-const headerElem = new Header({
-  header,
-});
-headerElem.init();
-headerElem.setEventListeners();
-headerElem.render({
-  isLogged: false,
-  userName: "GRETTA",
-});
 
 // validation
 const signInFormValidator = new FormValidator({
@@ -108,6 +111,7 @@ successPopup.setEventListeners();
 const mainApi = new MainAPI(configMainApi);
 const newsApi = new NewsApi(configNewsApi);
 
+
 // authorization
 
 signUpForm.addEventListener("submit", () => {
@@ -131,7 +135,7 @@ signUpForm.addEventListener("submit", () => {
     });
 });
 
-// authetication
+// authentication
 
 signInForm.addEventListener("submit", () => {
   event.preventDefault();
@@ -141,9 +145,23 @@ signInForm.addEventListener("submit", () => {
       email: signInForm.elements.email.value,
       password: signInForm.elements.password.value,
     })
-    .then((res) => {
-      console.log(res).catch((err) => console.log(err));
+    .then(() => {
+      mainApi
+        .getUserData({
+          partOfUrl: "me",
+        })
+        .then((res) => {
+          localStorage.setItem("name", res.data.name);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {
+          headerElem.render({
+            isLogged: isUserLogged,
+            userName: localStorage.getItem("name"),
+          });
+        });
     })
+    .catch((err) => console.log(err))
     .finally(() => {
       signInPopup._close();
       signInFormValidator.resetValidation();
@@ -152,47 +170,16 @@ signInForm.addEventListener("submit", () => {
     });
 });
 
+// function isUserLogged() {
+//   let isLogged;
+//   localStorage.getItem("name") !== null
+//     ? (isLogged = true)
+//     : (isLogged = false);
+//   return isLogged;
+// }
+
 //обработчик клика по кнопке поиска новостей
 
-const createCardsArray = function (res) {
-  const array = [];
-  res.forEach((card) => {
-    array.push(
-      new NewsCard({
-        template: cardTemplate,
-        link: card.urlToImage,
-        date: dateWithMontsName(dateFormat(card.publishedAt)),
-        title: card.title,
-        text: card.description,
-        source: card.source.name,
-      }).createCard()
-    );
-  });
-
-  return array;
-};
-
-const newsList = new NewsCardList({
-  container: newsCardsContainer,
-  cards: createCardsArray,
-});
-
-// newsApi.getCards('Apple', prevDate, currentDate, 100).then((res) => {
-//   newsList.renderCard(res);
-// });
-
-let allArticles = [];
-
-const searchResults = new SearchResults({
-  container: searchResultsContainer,
-  showMoreBtn: showMoreButton,
-  renderNews: newsList.renderCard,
-});
-
-searchResults.init();
-
-// нужно исправить: кнопка показать еще скрывается когда ищещь что-то новое
-// какие-то левые новости остаются в списке новостей
 searchForm.addEventListener("submit", () => {
   event.preventDefault();
   allArticles = [];
@@ -228,6 +215,57 @@ searchForm.addEventListener("submit", () => {
     })
     .catch((err) => searchResults.renderError())
     .finally(() => searchResults.renderLoading(false));
+});
+
+
+const createCardsArray = function (res) {
+  const array = [];
+  res.forEach((card) => {
+    array.push(
+      new NewsCard({
+        template: cardTemplate,
+        keyword: searchForm.elements["search-field"].value,
+        link: card.urlToImage,
+        date: dateWithMontsName(dateFormat(card.publishedAt)),
+        title: card.title,
+        text: card.description,
+        source: card.source.name,
+        url: card.url,
+        api: mainApi,
+        isLogged: isUserLogged(),
+      }).createCard()
+    );
+  });
+
+  return array;
+};
+
+const newsList = new NewsCardList({
+  container: newsCardsContainer,
+  cards: createCardsArray,
+});
+
+// newsApi.getCards('Apple', prevDate, currentDate, 100).then((res) => {
+//   newsList.renderCard(res);
+// });
+
+let allArticles = [];
+
+const searchResults = new SearchResults({
+  container: searchResultsContainer,
+  showMoreBtn: showMoreButton,
+  renderNews: newsList.renderCard,
+});
+
+searchResults.init();
+
+// нужно исправить: кнопка показать еще скрывается когда ищещь что-то новое
+// какие-то левые новости остаются в списке новостей
+
+exitButton.addEventListener("click", () => {
+  console.log("clicl");
+  localStorage.removeItem("name");
+  location.reload();
 });
 
 // showMoreButton.addEventListener("click", () => {

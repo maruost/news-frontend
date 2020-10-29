@@ -3,14 +3,13 @@ export default class Header {
     this._header = header;
   }
 
-  render = ({ ...props }) => {
-    if (props.isLogged) {
+  render = ({ isLogged, userName }) => {
+    if (isLogged) {
       for (let elem of this._menu.children) {
-        console.log(elem);
         if (elem.id !== "header-main-link") {
           elem.classList.toggle("hide");
         }
-        this._menu.querySelector('.header__name').textContent = props.userName;
+        this._menu.querySelector('.header__name').textContent = userName;
       }
     }
   };
