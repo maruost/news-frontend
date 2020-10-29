@@ -42,11 +42,6 @@
   filter: none;
 }
 
-.button:hover {
-  opacity: 0.9;
-  transition: opacity 0.8s ease;
-}
-
 .button_size_l {
   width: 360px;
 }

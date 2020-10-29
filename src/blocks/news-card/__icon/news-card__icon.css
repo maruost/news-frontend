@@ -15,13 +15,13 @@
   fill: #b6bcbf;
 }
 
-.news-card__icon_bookmark:hover {
+/* .news-card__icon_bookmark:hover {
   stroke: #1a1b22;
 }
 
 .news-card__icon_bin:hover {
   fill: #1a1b22;
-}
+} */
 
 .news-card__icon_marked {
   fill: #2F71E5;

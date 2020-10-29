@@ -26,7 +26,8 @@ export default class NewsCard {
   // creating card DOM element
   createCard() {
     const card = this._template.cloneNode(true).querySelector(".news-card");
-    card.querySelector(".news-card__image").src = this._link;
+    console.log(this._link)
+    this._link ? card.querySelector(".news-card__image").src = this._link : 0;
     card.querySelector(".news-card__date").textContent = this._date;
     card.querySelector(".news-card__title").textContent = this._title;
     card.querySelector(".news-card__text").textContent = this._text;
@@ -44,6 +45,7 @@ export default class NewsCard {
     this._deleteIcon = this._cardElement.querySelector("#delete-icon");
 
     if (this._isLogged) {
+      console.log(this._isLogged)
       this._saveBtn.addEventListener("click", () => {
         this._renderIcon();
         this._save();

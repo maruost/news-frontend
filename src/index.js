@@ -111,7 +111,6 @@ successPopup.setEventListeners();
 const mainApi = new MainAPI(configMainApi);
 const newsApi = new NewsApi(configNewsApi);
 
-
 // authorization
 
 signUpForm.addEventListener("submit", () => {
@@ -217,7 +216,6 @@ searchForm.addEventListener("submit", () => {
     .finally(() => searchResults.renderLoading(false));
 });
 
-
 const createCardsArray = function (res) {
   const array = [];
   res.forEach((card) => {
@@ -263,7 +261,8 @@ searchResults.init();
 // какие-то левые новости остаются в списке новостей
 
 exitButton.addEventListener("click", () => {
-  console.log("clicl");
+  document.cookie = "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+  localStorage.removeItem("token");
   localStorage.removeItem("name");
   location.reload();
 });

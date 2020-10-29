@@ -118,7 +118,9 @@ mainApi
   })
   .catch((err) => console.log(err));
 
-exitButton.addEventListener("click", () => {
-  localStorage.removeItem("name");
-  location.reload();
-});
+  exitButton.addEventListener("click", () => {
+    document.cookie = "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    location.reload();
+  });
