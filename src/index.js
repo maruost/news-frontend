@@ -14,55 +14,104 @@ import {
 import SearchResults from "./js/components/SearchResults";
 import MainAPI from "./js/api/MainApi";
 
+import { configNewsApi, configMainApi } from "./js/configs/configs";
+
 // (function () {
-const registrationButton = document.querySelector("#reg-header-btn");
-const registrationPopup = document.querySelector("#popup-signup");
-const closeRegistrationPopup = document.querySelector("#popup-signup-close");
-const authButton = document.querySelector("#auth-header-btn");
-const authPopup = document.querySelector("#popup-signin");
-const closeAuthPopup = document.querySelector("#popup-signin-close");
-const closeSuccessPopup = document.querySelector("#popup-success-close");
-const signUpSuccessPopup = document.querySelector("popup-success");
-const signInForm = document.forms.login;
-const signUpForm = document.forms.registration;
-const searchForm = document.forms.search;
-const header = document.querySelector(".header");
-const cardTemplate = document.querySelector("#news-card-template").content;
-console.log(cardTemplate);
-const newsCardsContainer = document.querySelector(".news-list");
-const searchButton = document.querySelector(".search-form__button");
+
+import {
+  errorMessages,
+  registrationPopup,
+  signUpSuccessPopup,
+  authPopup,
+  registrationButton,
+  authButton,
+  closeAuthPopup,
+  closeSuccessPopup,
+  closeRegistrationPopup,
+  signInForm,
+  signUpForm,
+  searchForm,
+  cardTemplate,
+  showMoreButton,
+  header,
+  newsCardsContainer,
+  searchResultsContainer,
+  foundResults,
+  notFound,
+} from "./js/constants/constants";
+import { sign } from "core-js/fn/number";
+
+// date
 const now = new Date();
 const currentDate = dateFormat(now);
 const prevDate = dateFormat(findPrevDate(now, 7));
-const showMoreButton = document.querySelector(".search-results__button");
-const loader = document.querySelector(".loader");
-const searchResultsContainer = document.querySelector(".search-results");
-const foundResults = document.querySelector(".search-results__container");
-const notFound = document.querySelector(".not-found");
 
-console.log(currentDate, prevDate);
+// rendering humburger-menu
 
-const errorMessages = {
-  empty: "Это обязательное поле",
-  wrongLength: "Должно быть от 2 до 30 символов",
-  wrongType: "Здесь должна быть ссылка",
-  printEmail: "Введите действующий e-mail",
-  missKeyWord: "Нужно ввести ключевое слово",
-};
+const headerElem = new Header({
+  header,
+});
+headerElem.init();
+headerElem.setEventListeners();
+headerElem.render({
+  isLogged: false,
+  userName: "GRETTA",
+});
 
-const configMainApi = {
-  url:
-    NODE_ENV === "production"
-      ? "https://api.my-news-explorer.gq/"
-      : "http://localhost:3000/",
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
+// validation
+const signInFormValidator = new FormValidator({
+  form: signInForm,
+  closeButton: closeAuthPopup,
+  errorMessages,
+});
+
+const signUpFormValidator = new FormValidator({
+  form: signUpForm,
+  closeButton: closeRegistrationPopup,
+  errorMessages,
+});
+
+const searchFormValidator = new FormValidator({
+  form: searchForm,
+  errorMessages,
+});
+
+signInFormValidator.init();
+signUpFormValidator.init(); // !!! НУЖНО ИСПРАВИТЬ ЧТО ПРИ ОТКРЫТИИ ОПРЕДЕЛННОГО ПОПАПА ИНИЦИИРУЕТСЯ ОПРЕДЕЛЕННАЯ ФОРМА
+searchFormValidator.init();
+
+// popups
+
+const signUpPopup = new Popup({
+  popup: registrationPopup,
+  openButton: registrationButton,
+  closeButton: closeRegistrationPopup,
+});
+
+const signInPopup = new Popup({
+  popup: authPopup,
+  openButton: authButton,
+  closeButton: closeAuthPopup,
+});
+
+const successPopup = new Popup({
+  popup: signUpSuccessPopup,
+  closeButton: closeSuccessPopup,
+});
+
+signUpPopup.setEventListeners();
+signInPopup.setEventListeners();
+successPopup.setEventListeners();
+
+// API
 
 const mainApi = new MainAPI(configMainApi);
+const newsApi = new NewsApi(configNewsApi);
+
+// authorization
 
 signUpForm.addEventListener("submit", () => {
+  event.preventDefault();
   mainApi
     .signup({
       partOfUrl: "signup",
@@ -71,100 +120,37 @@ signUpForm.addEventListener("submit", () => {
       password: signUpForm.elements.password.value,
     })
     .then((res) => {
-      localStorage.setItem('name', `${res.data.name}`);
-      localStorage.setItem('email', `${res.data.email}`);
-      localStorage.setItem('password', `${res.data.password}`);
+      successPopup._open();
     })
-    .catch((err) => console.log(err.json()));
+    .catch((err) => console.log(err))
+    .finally(() => {
+      signUpPopup._close();
+      signUpFormValidator.resetValidation();
+      signUpFormValidator.setSubmitButtonState(false);
+      signUpForm.reset();
+    });
 });
 
-console.log(localStorage.getItem('name'));
+// authetication
 
-const config = {
-  url:
-    NODE_ENV === "production"
-      ? "https://nomoreparties.co/news/v2/everything"
-      : "https://newsapi.org/v2/everything",
-  headers: {
-    authorization: "0c94ed05a1c74e599d2ccbf92efbc3dc",
-  },
-};
-const newsApi = new NewsApi(config);
-
-//popups
-const signUpPopup = new Popup({
-  popup: registrationPopup,
-  openButton: registrationButton,
-  closeButton: closeRegistrationPopup,
-});
-
-signUpPopup.setEventListeners();
-
-const signInPopup = new Popup({
-  popup: authPopup,
-  openButton: authButton,
-  closeButton: closeAuthPopup,
-});
-
-signInPopup.setEventListeners();
-
-const successPopup = new Popup({
-  popup: signUpSuccessPopup,
-  closeButton: closeSuccessPopup,
-});
-
-successPopup.setEventListeners();
-
-// humburger-menu
-
-const headerElem = new Header({
-  header: header,
-});
-
-headerElem.init();
-headerElem.setEventListeners();
-headerElem.render({
-  isLogged: true,
-  userName: 'GRETTA',
-});
-
-// validation
-
-const signInFormValidator = new FormValidator({
-  form: signInForm,
-  closeButton: closeAuthPopup,
-  errorMessages,
-});
-
-// signInFormValidator.init();
-
-const signUpFormValidator = new FormValidator({
-  form: signUpForm,
-  closeButton: closeRegistrationPopup,
-  errorMessages,
-});
-
-signUpFormValidator.init(); // !!! НУЖНО ИСПРАВИТЬ ЧТО ПРИ ОТКРЫТИИ ОПРЕДЕЛННОГО ПОПАПА ИНИЦИИРУЕТСЯ ОПРЕДЕЛЕННАЯ ФОРМА
-
-const searchFormValidator = new FormValidator({
-  form: searchForm,
-  errorMessages,
-});
-
-searchFormValidator.init();
-
-// work of signup popup
-
-signUpForm.addEventListener("submit", () => {
+signInForm.addEventListener("submit", () => {
   event.preventDefault();
-  // successPopup._open().bind();
-  signUpPopup._close();
-  signUpFormValidator.resetValidation();
-  signUpFormValidator.setSubmitButtonState(false);
-  signUpForm.reset();
+  mainApi
+    .signin({
+      partOfUrl: "signin",
+      email: signInForm.elements.email.value,
+      password: signInForm.elements.password.value,
+    })
+    .then((res) => {
+      console.log(res).catch((err) => console.log(err));
+    })
+    .finally(() => {
+      signInPopup._close();
+      signInFormValidator.resetValidation();
+      signInFormValidator.setSubmitButtonState(false);
+      signInForm.reset();
+    });
 });
-
-//
 
 //обработчик клика по кнопке поиска новостей
 
