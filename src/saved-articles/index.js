@@ -13,6 +13,7 @@ import { isUserLogged } from "../js/utils/checkLogin";
 
 import SearchResults from "../js/components/SearchResults";
 import MainAPI from "../js/api/MainApi";
+import SavedArticles from "../js/components/SavedArticles";
 
 import { configMainApi } from "../js/configs/configs";
 
@@ -39,6 +40,8 @@ import {
   searchResultsContainer,
   foundResults,
   notFound,
+  savedArticlesContainer,
+
 } from "../js/constants/constants";
 import {
   findPrevDate,
@@ -46,15 +49,16 @@ import {
   dateWithMontsName,
 } from "../js/utils/dateFormat";
 
-const now = new Date();
-const currentDate = dateFormat(now);
-const prevDate = dateFormat(findPrevDate(now, 7));
+import { titleText } from "../js/utils/titleTextFormat";
+import { keysObj, byField } from "../js/utils/keysSorting";
 
 const headerElem = new Header({
   header: header,
 });
 
 // initialization header hamburger menu
+
+console.log(savedArticlesContainer);
 
 headerElem.init();
 headerElem.setEventListeners();
@@ -63,28 +67,15 @@ headerElem.render({
   userName: localStorage.getItem("name"),
 });
 
-const newsList = new NewsCardList({
-  container: newsCardsContainer,
-  cards: createCardsArray,
-});
-
 const mainApi = new MainAPI(configMainApi);
 
-mainApi
-  .getArticles({
-    partOfUrl: "articles",
-  })
-  .then((res) => {
-    console.log(res);
-    newsList.renderCard(res);
-  })
-  .catch((err) => console.log(err));
-
-exitButton.addEventListener("click", () => {
-  localStorage.removeItem("name");
-  location.reload();
+const savedArticles = new SavedArticles({
+  container: savedArticlesContainer,
+  api: mainApi,
+  titleText: titleText,
 });
 
+savedArticles.renderTitle();
 
 const createCardsArray = function (res) {
   const array = [];
@@ -92,13 +83,13 @@ const createCardsArray = function (res) {
     array.push(
       new NewsCard({
         template: cardTemplate,
-        keyword: searchForm.elements["search-field"].value,
-        link: card.urlToImage,
-        date: dateWithMontsName(dateFormat(card.publishedAt)),
+        keyword: card.keyword,
+        link: card.image,
+        date: card.date,
         title: card.title,
-        text: card.description,
-        source: card.source.name,
-        url: card.url,
+        text: card.text,
+        source: card.source,
+        url: card.link,
         api: mainApi,
         isLogged: isUserLogged(),
       }).createCard()
@@ -108,3 +99,26 @@ const createCardsArray = function (res) {
   return array;
 };
 
+const newsList = new NewsCardList({
+  container: newsCardsContainer,
+  cards: createCardsArray,
+});
+
+mainApi
+  .getArticles({
+    partOfUrl: "articles",
+  })
+  .then((res) => {
+    console.log(res.data);
+    const keysArr = keysObj(res.data);
+    keysArr.sort(byField("frequency"));
+    savedArticles.renderTitle(res.data.length);
+    savedArticles.renderKeyWords(keysArr);
+    newsList.renderCard(res.data);
+  })
+  .catch((err) => console.log(err));
+
+exitButton.addEventListener("click", () => {
+  localStorage.removeItem("name");
+  location.reload();
+});

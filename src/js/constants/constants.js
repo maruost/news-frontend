@@ -38,6 +38,7 @@ const newsCardsContainer = document.querySelector(".news-list");
 const searchResultsContainer = document.querySelector(".search-results");
 const foundResults = document.querySelector(".search-results__container");
 const notFound = document.querySelector(".not-found");
+const savedArticlesContainer = document.querySelector(".saved-articles");
 
 export {
   errorMessages,
@@ -60,4 +61,5 @@ export {
   searchResultsContainer,
   foundResults,
   notFound,
+  savedArticlesContainer,
 };

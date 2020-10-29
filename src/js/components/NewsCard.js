@@ -21,7 +21,6 @@ export default class NewsCard {
     this._api = api;
     this._url = url;
     this._isLogged = isLogged;
-    console.log(this._keyword);
   }
 
   // creating card DOM element
@@ -32,6 +31,7 @@ export default class NewsCard {
     card.querySelector(".news-card__title").textContent = this._title;
     card.querySelector(".news-card__text").textContent = this._text;
     card.querySelector(".news-card__source").textContent = this._source;
+    card.querySelector(".news-card__btn_key-word").textContent = this._keyword;
 
     this._cardElement = card;
     this._setEventListeners();
@@ -39,7 +39,7 @@ export default class NewsCard {
   }
 
   _setEventListeners() {
-    this._saveBtn = this._cardElement.querySelector("#save-icon");
+    this._saveBtn = this._cardElement.querySelector(".news-card__btn");
     this._saveIcon = this._saveBtn.querySelector(".news-card__icon");
     this._deleteIcon = this._cardElement.querySelector("#delete-icon");
 
@@ -85,6 +85,7 @@ export default class NewsCard {
     this._saveBtn.setAttribute("disabled", true);
   };
 }
+
 // _removeFromDB = () => {
 //   console.log(this._id)
 //   this._api.removeArticle({

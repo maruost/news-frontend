@@ -23,7 +23,7 @@
             <a class="logo header__logo" href="./index.html">NewsExplorer</a>
             <ul class="header__menu">
               <li class="header__elem" id="header-main-link">
-                <a href="./index.html" class="header__link"  >Главная</a>
+                <a href="./index.html" class="header__link">Главная</a>
               </li>
               <li class="header__elem">
                 <a
@@ -33,7 +33,7 @@
                 >
               </li>
               <!-- вставить через TextContent в зависимости от авторизации -->
-              <li class="header__elem" id ="exit-button">
+              <li class="header__elem" id="exit-button">
                 <button id="user-header-btn" class="header__button">
                   <p class="header__name"></p>
                   <svg
@@ -63,28 +63,23 @@
       <section class="saved-articles main__saved-articles">
         <h2 class="saved-articles__subtitle">Сохранённые статьи</h2>
         <h1 class="saved-articles__title">Грета, у вас 5 сохранённых статей</h1>
-        <p class="saved-articles__key-words">
-          По ключевым словам: <span class="span-accent">Природа,</span
-          ><span class="span-accent">Тайга</span> и
-          <span class="span-accent"> 2-м другим</span>
-        </p>
       </section>
       <section class="search-results main__search-results">
         <div class="search-results__container">
           <div class="news-list search-results__news-list">
             <template id="news-card-template">
-            <div class="news-card">
-              <img src="<%=require('./images/image_06.png')%>" alt="растение" class="news-card__image">
+              <div class="news-card">
+                <img src="" alt="растение" class="news-card__image" />
                 <div class="news-card__btns news-card__btns_left">
-                  <button class="news-card__btn news-card__btn_key-word">
-                    Природа
-                  </button>
+                  <button
+                    class="news-card__btn news-card__btn_key-word"
+                  ></button>
                 </div>
                 <div class="news-card__btns news-card__btns_right">
                   <button class="news-card__message hide">
                     Убрать из сохранённых
                   </button>
-                  <button class="news-card__btn" id = "delete-icon">
+                  <button class="news-card__btn" id="delete-icon">
                     <svg
                       class="news-card__icon news-card__icon_bin"
                       width="18"
@@ -99,24 +94,24 @@
                     </svg>
                   </button>
                 </div>
-              <div class="news-card__description">
-                <div class="news-card__container">
-                  <p class="news-card__date">2 августа, 2019</p>
-                  <article class="news-card__article">
-                    <h3 class="news-card__title">
-                      Национальное достояние – парки
-                    </h3>
-                    <p class="news-card__text">
-                      В 2016 году Америка отмечала важный юбилей: сто лет назад
-                      здесь начала складываться система национальных парков –
-                      охраняемых территорий, где и сегодня каждый может
-                      приобщиться к природе.
-                    </p>
-                  </article>
+                <div class="news-card__description">
+                  <div class="news-card__container">
+                    <p class="news-card__date">2 августа, 2019</p>
+                    <article class="news-card__article">
+                      <h3 class="news-card__title">
+                        Национальное достояние – парки
+                      </h3>
+                      <p class="news-card__text">
+                        В 2016 году Америка отмечала важный юбилей: сто лет
+                        назад здесь начала складываться система национальных
+                        парков – охраняемых территорий, где и сегодня каждый
+                        может приобщиться к природе.
+                      </p>
+                    </article>
+                  </div>
                 </div>
+                <p class="news-card__source">Дзен</p>
               </div>
-              <p class="news-card__source">Дзен</p>
-            </div>
             </template>
           </div>
         </div>

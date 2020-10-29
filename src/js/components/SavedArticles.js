@@ -1,22 +1,60 @@
 export default class SavedArticles {
-  constructor({ name, articles }) {
-    this._name = name;
-    this._articles = articles;
+  constructor({ container, api, titleText }) {
+    this._container = container;
+    this._api = api;
+    this._titleText = titleText;
   }
 
-  renderTitle = () => {
-    this._title = document.createElement('saved-articles__title');
-    this._appendChild(this._title);
-    this._title.textContent = `${this._name}, у вас ${this._articles.length} сохранённых статей`
-  }
+  renderTitle = (amount) => {
+    this._name = localStorage.getItem("name");
+    this._title = this._container.querySelector(".saved-articles__title");
+    this._titleText(amount);
+  };
 
-  renderKeywords = () => {
-    this._keywords = document.createElement('saved-articles__keywords');
-    this._appendChild(this._keywords);
-    this._key.textContent = `${this._name}, у вас ${this._amount} сохранённых статей`
-  }
-
-  _appendChild (elem) {
-    this._container.appendChild(elem);
-  }
+  renderKeyWords = (keys) => {
+    console.log;
+    const len = keys.length;
+    console.log(len);
+    console.log(keys[0].keyword);
+    if (len > 3) {
+      this._title.insertAdjacentHTML(
+        "afterend",
+        `<p class="saved-articles__key-words">
+      По ключевым словам: <span class="span-accent">${keys[0].keyword}, </span
+      ><span class="span-accent">${keys[1].keyword}</span> и
+      <span class="span-accent"> ${len - 2} другим</span>
+    </p>`
+      );
+    } else if (len === 3) {
+      this._title.insertAdjacentHTML(
+        "afterend",
+        `<p class="saved-articles__key-words">
+      По ключевым словам: <span class="span-accent">${keys[0].keyword}, </span
+      ><span class="span-accent">${keys[1].keyword}</span> и
+      <span class="span-accent"> ${keys[2].keyword} </span>
+    </p>`
+      );
+    } else if (len === 2) {
+      this._title.insertAdjacentHTML(
+        "afterend",
+        `<p class="saved-articles__key-words">
+    По ключевому слову: <span class="span-accent">${keys[0].keyword}, </span
+    ><span class="span-accent">${keys[1].keyword}</span>
+  </p>`
+      );
+    } else if (len === 1) {
+      this._title.insertAdjacentHTML(
+        "afterend",
+        `<p class="saved-articles__key-words">
+По ключевому слову: <span class="span-accent">${keys[0].keyword}
+</p>`
+      );
+    } else if (len === 0) {
+      this._title.insertAdjacentHTML(
+        "afterend",
+        `<p class="saved-articles__key-words">
+  </p>`
+      );
+    }
+  };
 }
