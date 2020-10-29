@@ -8,7 +8,7 @@ const errorMessages = {
 
 // popups
 const registrationPopup = document.querySelector("#popup-signup");
-const signUpSuccessPopup = document.querySelector("popup-success");
+const signUpSuccessPopup = document.querySelector("#popup-success");
 const authPopup = document.querySelector("#popup-signin");
 
 // popups elems: open buttons
@@ -30,6 +30,7 @@ const cardTemplate = document.querySelector("#news-card-template").content;
 
 // buttons
 const showMoreButton = document.querySelector(".search-results__button");
+const exitButton = document.querySelector("#exit-button");
 
 // containers and blocks
 const header = document.querySelector(".header");
@@ -53,6 +54,7 @@ export {
   searchForm,
   cardTemplate,
   showMoreButton,
+  exitButton,
   header,
   newsCardsContainer,
   searchResultsContainer,
