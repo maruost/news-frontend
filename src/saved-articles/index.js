@@ -59,8 +59,8 @@ const headerElem = new Header({
 // initialization header hamburger menu
 
 headerElem.init();
-headerElem.setEventListeners();
-headerElem.setOptions();
+// headerElem.setEventListeners();
+// headerElem.setOptions();
 
 const mainApi = new MainAPI(configMainApi);
 

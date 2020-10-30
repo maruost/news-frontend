@@ -14,7 +14,7 @@ export default class SearchResults {
     this._loader = this._container.querySelector(".search-results__loader");
     this._title = this._notFound.querySelector(".not-found__title");
     this._subtitle = this._notFound.querySelector(".not-found__subtitle");
-    this._results = this._container.querySelector(".search-results__container")
+    this._results = this._container.querySelector(".search-results__container");
   };
 
   // render loader depending on its status (true - show, false - hide)
@@ -27,7 +27,7 @@ export default class SearchResults {
     }
   };
 
-  setInitialState ([...items]) {
+  setInitialState([...items]) {
     items.forEach((item) => {
       this._hideElement(item);
     });
@@ -64,10 +64,10 @@ export default class SearchResults {
 
   renderResults = () => {
     this._showElement(this._results);
-  }
+  };
 
   setEventListeners(articles) {
-    console.log('peredali')
+    console.log("peredali");
     console.log(articles);
     this._button.addEventListener("click", () => {
       this._showMore(articles);
@@ -76,11 +76,14 @@ export default class SearchResults {
 
   _showMore(articles) {
     if (articles.length > 3) {
-      this._newsList(articles.splice(0, 3));
+      console.log("больше тркх");
+      console.log(articles);
+      return this._newsList(articles.splice(0, 3));
     } else {
-      this._newsList(articles.splice(0, 3));
+      console.log("меньше тркх");
+      console.log(articles);
       this._hideElement(this._button);
+      return this._newsList(articles.splice(0, 3));
     }
-
   }
 }

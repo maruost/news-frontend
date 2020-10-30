@@ -40,33 +40,20 @@ export default class NewsCard {
     return card;
   }
 
-  _setEventListeners() {
-    this._saveBtn = this._cardElement.querySelector(".news-card__btn_icon");
-    this._saveIcon = this._saveBtn.querySelector(".news-card__icon");
+  _setEventListeners = (isLogged) => {
+    this._iconBtn = this._cardElement.querySelector(".news-card__btn_icon");
+    this._iconIcon = this._iconBtn.querySelector(".news-card__icon");
     this._deleteIcon = this._cardElement.querySelector("#delete-icon");
+    this._message = this._cardElement.querySelector(".news-card__message");
 
-    if (this._isLogged) {
-      if (this._saveBtn.id !== "delete-icon") {
-        this._saveBtn.removeEventListener("mouseover", this._toggleMessage);
-        this._saveBtn.addEventListener("click", () => {
-          this._renderIcon();
-          this._save();
-        });
-      } else {
-        this._saveBtn.addEventListener("mouseover", this._toggleMessage);
-        console.log("delete");
-        this._saveBtn.addEventListener("click", this._deleteArticleFromDB);
-      }
-    } else {
-      if (!this._saveBtn.id !== "delete-icon") {
-        this._saveBtn.addEventListener("mouseover", this._toggleMessage);
-      }
-    }
-  }
-
+    this._iconBtn.addEventListener("mouseover", this._toggleMessageByHover);
+    this._iconBtn.addEventListener("mouseout", this._toggleMessageByHover);
+    this._iconBtn.addEventListener("click", this._actByClick);
+  };
   _remove = () => {
-    this._saveBtn.removeEventListener("mouseover", this._toggleMessage);
-    this._saveBtn.removeEventListener("mouseover", this._toggleMessage);
+    this._iconBtn.removeEventListener("mouseover", this._toggleMessageByHover);
+    this._iconBtn.removeEventListener("mouseout", this._toggleMessageByHover);
+    this._iconBtn.removeEventListener("click", this._actByClick);
 
     this._cardElement.remove();
   };
@@ -97,18 +84,39 @@ export default class NewsCard {
       })
       .then((res) => {
         console.log(this._id);
-        this._getId(res.data._id);
       })
       .catch((err) => console.log(err));
   };
 
-  _toggleMessage = () => {
-    this._message = this._cardElement.querySelector(".news-card__message");
-    this._message.classList.remove("hide");
+  _toggleMessageByHover = () => {
+    if (
+      (this._isLogged && this._iconBtn.id === "delete-icon") ||
+      (!this._isLogged && this._iconBtn.id === "save-icon")
+    ) {
+      this._toggleMessage();
+    }
+  };
 
-    this._saveBtn.addEventListener("mouseout", () => {
-      this._message.classList.add("hide");
-    });
+  _toggleMessage = () => {
+    this._message.classList.toggle("hide");
+  };
+
+  _actByClick = () => {
+    if (this._iconBtn.id === "save-icon") {
+      if (this._isLogged) {
+        this._renderIcon();
+        this._save();
+      } else {
+        event.target.setAttribute("disabled", true);
+      }
+    } else if (this._iconBtn.id === "delete-icon") {
+      if (this._isLogged) {
+        console.log("залог бин");
+        this._deleteArticleFromDB();
+      } else {
+        event.target.setAttribute("disabled", true);
+      }
+    }
   };
 
   _renderIcon = () => {

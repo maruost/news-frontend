@@ -33,7 +33,10 @@
                 >
               </li>
               <li class="header__elem">
-                <button id="auth-header-btn" class="header__button header__button_entry">
+                <button
+                  id="auth-header-btn"
+                  class="header__button header__button_entry"
+                >
                   Войти
                 </button>
               </li>
@@ -42,7 +45,7 @@
                   Регистрация
                 </button>
               </li>
-              <li class="header__elem hide" id = "exit-button">
+              <li class="header__elem hide" id="exit-button">
                 <button id="user-header-btn" class="header__button">
                   <p class="header__name"></p>
                   <svg
@@ -115,7 +118,11 @@
           <div class="news-list search-results__news-list">
             <template id="news-card-template">
               <div class="news-card">
-                <img src="<%=require('./images/no-foto.jpg')%>" alt="растение" class="news-card__image" />
+                <img
+                  src="<%=require('./images/no-foto.jpg')%>"
+                  alt="растение"
+                  class="news-card__image"
+                />
                 <div class="news-card__btns news-card__btns_left hide">
                   <button
                     class="news-card__btn news-card__btn_key-word"
@@ -125,7 +132,10 @@
                   <button class="news-card__message hide">
                     Войдите, чтобы сохранять статьи
                   </button>
-                  <button class="news-card__btn news-card__btn_icon" id = "save-icon">
+                  <button
+                    class="news-card__btn news-card__btn_icon"
+                    id="save-icon"
+                  >
                     <svg
                       class="news-card__icon news-card__icon_bookmark"
                       width="14"
@@ -216,7 +226,8 @@
               Войти
             </button>
             <p class="popup__info">
-              или <a class="popup__link popup__link_reg">Зарегистрироваться</a>
+              или
+              <a class="popup__link popup__link_reg">Зарегистрироваться</a>
             </p>
           </form>
         </div>
@@ -308,10 +319,11 @@
           </svg>
           <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
           <p class="popup_info popup__info_success">
-            <a class="popup__link popup__link_entry" >Войти</a>
+            <a class="popup__link popup__link_entry">Войти</a>
           </p>
         </div>
       </div>
+
       <!-- лоадер перерисовывается через JS анимация загрузки модификатор loader__icon_loading, иконка не найдено loader_icon_not-found -->
 
       <section class="about main__about">

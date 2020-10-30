@@ -41,8 +41,6 @@ import {
   foundResults,
   notFound,
   exitButton,
-  regLink,
-  entryLink,
 } from "./js/constants/constants";
 
 const headerElem = new Header({
@@ -52,7 +50,7 @@ const headerElem = new Header({
 // initialization header hamburger menu
 
 headerElem.init();
-headerElem.setEventListeners();
+// headerElem.setEventListeners();
 headerElem.render({
   isLogged: isUserLogged(),
   userName: localStorage.getItem("name"),
@@ -91,25 +89,24 @@ const signUpPopup = new Popup({
   popup: registrationPopup,
   openButton: registrationButton,
   closeButton: closeRegistrationPopup,
-  link: entryLink,
 });
 
 const signInPopup = new Popup({
   popup: authPopup,
   openButton: authButton,
   closeButton: closeAuthPopup,
-  link: regLink,
+  popupToOpen: signUpPopup,
 });
 
 const successPopup = new Popup({
   popup: signUpSuccessPopup,
   closeButton: closeSuccessPopup,
-  link: regLink,
+  popupToOpen: signInPopup,
 });
 
-signUpPopup.setEventListeners();
-signInPopup.setEventListeners();
-successPopup.setEventListeners();
+signInPopup.setEventListeners(signUpPopup);
+signUpPopup.setEventListeners(signInPopup);
+successPopup.setEventListeners(signInPopup);
 
 // API
 
@@ -175,10 +172,46 @@ signInForm.addEventListener("submit", () => {
 });
 
 //обработчик клика по кнопке поиска новостей
+const createCardsArray = function (res) {
+  const array = [];
+  res.forEach((card) => {
+    array.push(
+      new NewsCard({
+        template: cardTemplate,
+        keyword: searchForm.elements["search-field"].value,
+        link: card.urlToImage,
+        date: dateWithMontsName(dateFormat(card.publishedAt)),
+        title: card.title,
+        text: card.description,
+        source: card.source.name,
+        url: card.url,
+        api: mainApi,
+        isLogged: isUserLogged(),
+      }).createCard()
+    );
+  });
+
+  return array;
+};
+
+// let allArticles = [];
+
+const newsList = new NewsCardList({
+  container: newsCardsContainer,
+  cards: createCardsArray,
+});
+
+const searchResults = new SearchResults({
+  container: searchResultsContainer,
+  showMoreBtn: showMoreButton,
+  renderNews: newsList.renderCard,
+});
+
+searchResults.init();
 
 searchForm.addEventListener("submit", () => {
   event.preventDefault();
-  allArticles = [];
+  let allArticles = [];
   newsList.clear();
   showMoreButton.classList.remove("hide");
   searchResults.setInitialState([
@@ -202,7 +235,6 @@ searchForm.addEventListener("submit", () => {
         newsList.renderCard(allArticles.splice(0, 3));
         searchResults.renderResults();
       } else {
-        console.log("whf?!!");
         searchResults.renderNotFound();
       }
     }) // вынести кнопку шоу море за пределы события сабмита
@@ -213,64 +245,9 @@ searchForm.addEventListener("submit", () => {
     .finally(() => searchResults.renderLoading(false));
 });
 
-const createCardsArray = function (res) {
-  const array = [];
-  res.forEach((card) => {
-    array.push(
-      new NewsCard({
-        template: cardTemplate,
-        keyword: searchForm.elements["search-field"].value,
-        link: card.urlToImage,
-        date: dateWithMontsName(dateFormat(card.publishedAt)),
-        title: card.title,
-        text: card.description,
-        source: card.source.name,
-        url: card.url,
-        api: mainApi,
-        isLogged: isUserLogged(),
-      }).createCard()
-    );
-  });
-
-  return array;
-};
-
-const newsList = new NewsCardList({
-  container: newsCardsContainer,
-  cards: createCardsArray,
-});
-
-// newsApi.getCards('Apple', prevDate, currentDate, 100).then((res) => {
-//   newsList.renderCard(res);
-// });
-
-let allArticles = [];
-
-const searchResults = new SearchResults({
-  container: searchResultsContainer,
-  showMoreBtn: showMoreButton,
-  renderNews: newsList.renderCard,
-});
-
-searchResults.init();
-
-// нужно исправить: кнопка показать еще скрывается когда ищещь что-то новое
-// какие-то левые новости остаются в списке новостей
-
 exitButton.addEventListener("click", () => {
   document.cookie = "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
   localStorage.removeItem("token");
   localStorage.removeItem("name");
   location.reload();
 });
-
-// showMoreButton.addEventListener("click", () => {
-//   if (allArticles.length > 3) {
-//     newsList.renderCard(allArticles.splice(0, 3));
-//   } else {
-//     newsList.renderCard(allArticles.splice(0, 3));
-//     showMoreButton.classList.add("hide");
-//   }
-// });
-
-// })();
