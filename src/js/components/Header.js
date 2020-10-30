@@ -30,6 +30,8 @@ export default class Header {
     this._menuIcon = document.querySelector(".header__menu-icon");
     this._menu = document.querySelector(".header__menu");
     this._fill = document.querySelector(".header__fill");
+    this.setEventListeners();
+    this.setOptions();
   };
 
   setEventListeners() {
@@ -42,7 +44,7 @@ export default class Header {
   };
 
   _closeMenu = () => {
-    if ((window.innerWidth = 590)) {
+    if (window.innerWidth >= 590) {
       this._menuIcon.classList.toggle("header__menu-icon_active");
       this._menu.classList.toggle("header__menu_is-opened");
       this._header.classList.toggle("header_menu-is-opened");
