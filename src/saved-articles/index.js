@@ -41,7 +41,6 @@ import {
   foundResults,
   notFound,
   savedArticlesContainer,
-
 } from "../js/constants/constants";
 import {
   findPrevDate,
@@ -91,7 +90,8 @@ const createCardsArray = function (res) {
         source: card.source,
         url: card.link,
         api: mainApi,
-        isLogged: isUserLogged(),
+        id: card._id,
+        isLogged: isUserLogged,
       }).createCard()
     );
   });
@@ -118,9 +118,9 @@ mainApi
   })
   .catch((err) => console.log(err));
 
-  exitButton.addEventListener("click", () => {
-    document.cookie = "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-    localStorage.removeItem("token");
-    localStorage.removeItem("name");
-    location.reload();
-  });
+exitButton.addEventListener("click", () => {
+  document.cookie = "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+  localStorage.removeItem("token");
+  localStorage.removeItem("name");
+  location.reload();
+});

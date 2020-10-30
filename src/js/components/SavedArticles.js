@@ -12,10 +12,7 @@ export default class SavedArticles {
   };
 
   renderKeyWords = (keys) => {
-    console.log;
     const len = keys.length;
-    console.log(len);
-    console.log(keys[0].keyword);
     if (len > 3) {
       this._title.insertAdjacentHTML(
         "afterend",

@@ -72,7 +72,7 @@ export default class MainApi {
   };
 
   removeArticle = ( {partOfUrl, cardID} ) => {
-    return fetch(`${this._url}${partOfUrl}/${cardID}`, {
+    return fetch(`${this.url}${partOfUrl}/${cardID}`, {
       method: "DELETE",
       credentials: "include",
       headers: this.headers,

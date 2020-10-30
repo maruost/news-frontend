@@ -41,6 +41,8 @@ import {
   foundResults,
   notFound,
   exitButton,
+  regLink,
+  entryLink,
 } from "./js/constants/constants";
 
 const headerElem = new Header({
@@ -89,17 +91,20 @@ const signUpPopup = new Popup({
   popup: registrationPopup,
   openButton: registrationButton,
   closeButton: closeRegistrationPopup,
+  link: entryLink,
 });
 
 const signInPopup = new Popup({
   popup: authPopup,
   openButton: authButton,
   closeButton: closeAuthPopup,
+  link: regLink,
 });
 
 const successPopup = new Popup({
   popup: signUpSuccessPopup,
   closeButton: closeSuccessPopup,
+  link: regLink,
 });
 
 signUpPopup.setEventListeners();
@@ -168,14 +173,6 @@ signInForm.addEventListener("submit", () => {
       signInForm.reset();
     });
 });
-
-// function isUserLogged() {
-//   let isLogged;
-//   localStorage.getItem("name") !== null
-//     ? (isLogged = true)
-//     : (isLogged = false);
-//   return isLogged;
-// }
 
 //обработчик клика по кнопке поиска новостей
 

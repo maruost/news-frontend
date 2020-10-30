@@ -9,6 +9,7 @@ export default class NewsCard {
     source,
     url,
     api,
+    id,
     isLogged,
   }) {
     this._keyword = keyword;
@@ -21,13 +22,13 @@ export default class NewsCard {
     this._api = api;
     this._url = url;
     this._isLogged = isLogged;
+    this._id = id;
   }
 
   // creating card DOM element
   createCard() {
     const card = this._template.cloneNode(true).querySelector(".news-card");
-    console.log(this._link)
-    this._link ? card.querySelector(".news-card__image").src = this._link : 0;
+    this._link ? (card.querySelector(".news-card__image").src = this._link) : 0;
     card.querySelector(".news-card__date").textContent = this._date;
     card.querySelector(".news-card__title").textContent = this._title;
     card.querySelector(".news-card__text").textContent = this._text;
@@ -40,22 +41,47 @@ export default class NewsCard {
   }
 
   _setEventListeners() {
-    this._saveBtn = this._cardElement.querySelector(".news-card__btn");
+    this._saveBtn = this._cardElement.querySelector(".news-card__btn_icon");
     this._saveIcon = this._saveBtn.querySelector(".news-card__icon");
     this._deleteIcon = this._cardElement.querySelector("#delete-icon");
 
     if (this._isLogged) {
-      console.log(this._isLogged)
-      this._saveBtn.addEventListener("click", () => {
-        this._renderIcon();
-        this._save();
-      });
+      if (this._saveBtn.id !== "delete-icon") {
+        this._saveBtn.removeEventListener("mouseover", this._toggleMessage);
+        this._saveBtn.addEventListener("click", () => {
+          this._renderIcon();
+          this._save();
+        });
+      } else {
+        this._saveBtn.addEventListener("mouseover", this._toggleMessage);
+        console.log("delete");
+        this._saveBtn.addEventListener("click", this._deleteArticleFromDB);
+      }
     } else {
-      this._saveBtn.addEventListener("mouseover", () => {
-        this._toggleMessage();
-      });
+      if (!this._saveBtn.id !== "delete-icon") {
+        this._saveBtn.addEventListener("mouseover", this._toggleMessage);
+      }
     }
   }
+
+  _remove = () => {
+    this._saveBtn.removeEventListener("mouseover", this._toggleMessage);
+    this._saveBtn.removeEventListener("mouseover", this._toggleMessage);
+
+    this._cardElement.remove();
+  };
+
+  _deleteArticleFromDB = () => {
+    this._api
+      .removeArticle({
+        partOfUrl: "articles",
+        cardID: this._id,
+      })
+      .then((res) => {
+        this._remove();
+      })
+      .catch((err) => console.log(err));
+  };
 
   _save = () => {
     this._api
@@ -69,40 +95,24 @@ export default class NewsCard {
         link: this._url,
         image: this._link,
       })
+      .then((res) => {
+        console.log(this._id);
+        this._getId(res.data._id);
+      })
       .catch((err) => console.log(err));
   };
 
   _toggleMessage = () => {
     this._message = this._cardElement.querySelector(".news-card__message");
-    this._saveBtn.addEventListener("mouseover", () => {
-      this._message.classList.remove("hide");
-    });
+    this._message.classList.remove("hide");
+
     this._saveBtn.addEventListener("mouseout", () => {
       this._message.classList.add("hide");
     });
   };
 
   _renderIcon = () => {
-    this._saveIcon.classList.toggle("news-card__icon_marked");
-    this._saveBtn.setAttribute("disabled", true);
+    event.target.classList.toggle("news-card__icon_marked");
+    event.target.setAttribute("disabled", true);
   };
 }
-
-// _removeFromDB = () => {
-//   console.log(this._id)
-//   this._api.removeArticle({
-//     partOfUrl: "articles",
-//     cardId: this._id,
-//   })
-//   .then((res) => console.log(res))
-//   .catch((err) => console.log(err))
-// };
-
-// _cardAction = () => {
-//   this._renderIcon();
-//   if (this._saveIcon.classList.contains("news-card__icon_marked")) {
-//     this._save();
-//   } else {
-//     this._removeFromDB();
-//   }
-// };

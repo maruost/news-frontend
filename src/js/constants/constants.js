@@ -31,6 +31,8 @@ const cardTemplate = document.querySelector("#news-card-template").content;
 // buttons
 const showMoreButton = document.querySelector(".search-results__button");
 const exitButton = document.querySelector("#exit-button");
+const entryLink = document.querySelector('.popup__link_entry');
+const regLink = document.querySelector('popup__link_reg');
 
 // containers and blocks
 const header = document.querySelector(".header");
@@ -62,4 +64,6 @@ export {
   foundResults,
   notFound,
   savedArticlesContainer,
+  regLink,
+  entryLink
 };
