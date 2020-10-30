@@ -10,5 +10,7 @@
     left: 0;
     background-color: #1A1B22;
     z-index: 99;
+    color: white;
+    fill: white;
 
 }

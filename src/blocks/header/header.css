@@ -13,23 +13,16 @@
 @import url(./__name/header__name.css);
 
 .header {
-  /* border-bottom: 1px solid rgb(209, 210, 214, 0.5); */
   border-color: white;
   color: white;
   fill: white;
-  /* background-color: white; */
-  /* height: 80px; */
   position: relative;
-  /* opacity: 0; */
 }
 
 .header_theme_dark {
   border-color: #1a1b22;
-  /* border-bottom: 1px solid rgb(26, 27, 34, 0.2); */
   color: #1a1b22;
   fill: #1a1b22;
-  /* background-color:  #1a1b22; */
-  /* opacity: 0; */
 }
 
 .header.header_menu-is-opened {

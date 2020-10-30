@@ -53,18 +53,14 @@ import { keysObj, byField } from "../js/utils/keysSorting";
 
 const headerElem = new Header({
   header: header,
+  theme: "header_theme_dark",
 });
 
 // initialization header hamburger menu
 
-console.log(savedArticlesContainer);
-
 headerElem.init();
 headerElem.setEventListeners();
-headerElem.render({
-  isLogged: isUserLogged(),
-  userName: localStorage.getItem("name"),
-});
+headerElem.setOptions();
 
 const mainApi = new MainAPI(configMainApi);
 
