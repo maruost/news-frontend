@@ -32,7 +32,7 @@ export default class FormValidator {
     }
 
     if (input.validity.valueMissing) {
-      if (this._form.name !== "search") {
+      if (input.type !== "search") {
         this._getErrorSpan(input).textContent = this._errorMessages.empty;
       } else {
         this._getErrorSpan(input).textContent = this._errorMessages.missKeyWord;
@@ -41,7 +41,13 @@ export default class FormValidator {
     }
 
     if (input.validity.tooShort) {
-      this._getErrorSpan(input).textContent = this._errorMessages.wrongLength;
+      if (input.name !== "password") {
+        this._getErrorSpan(input).textContent = this._errorMessages.wrongLength;
+      } else {
+        this._getErrorSpan(
+          input
+        ).textContent = this._errorMessages.wrongLengthPassword;
+      }
       return false;
     }
 
