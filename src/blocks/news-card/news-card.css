@@ -2,6 +2,7 @@
 @import url(./__btn/news-card__btn.css);
 @import url(./__date/news-card__date.css);
 @import url(./__description/news-card__description.css);
+@import url(./__description-link/news-card__description-link.css);
 @import url(./__image/news-card__image.css);
 @import url(./__source/news-card__source.css);
 @import url(./__title/news-card__title.css);
@@ -41,10 +42,7 @@
 }
 
 @media screen and (max-width: 730px) {
-
   .news-card__btn {
     max-width: 200px;
   }
 }
-
-
