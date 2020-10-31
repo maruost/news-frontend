@@ -188,7 +188,6 @@ signInForm.addEventListener("submit", () => {
       password: signInForm.elements.password.value,
     })
     .then(() => {
-      document.cookie = "SameSite=None; Secure";
       mainApi
         .getUserData({
           partOfUrl: "me",
