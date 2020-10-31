@@ -6,7 +6,13 @@ export default class FormValidator {
   }
 
   _getErrorSpan = (element) => {
-    return this._form.querySelector(`.error[data-for="${element.name}"]`);
+    if (element.name) {
+      return this._form.querySelector(`.error[data-for="${element.name}"]`);
+    } else {
+      return this._form.querySelector(
+        `.error[data-for="${element.dataset.for}"]`
+      );
+    }
   };
 
   init = () => {
@@ -22,6 +28,28 @@ export default class FormValidator {
       this.setSubmitButtonState(true);
     } else {
       this.setSubmitButtonState(false);
+    }
+  };
+
+  showButtonMesage = (err) => {
+    this.setSubmitButtonState(false);
+    if (err === 401) {
+      console.log("Неправильные почта или пароль");
+      return (this._getErrorSpan(this._button).textContent =
+        "Неправильные почта или пароль");
+    }
+    if (err === 409) {
+      console.log("Неправильные почта или пароль");
+      return (this._getErrorSpan(this._button).textContent =
+        "Такой пользователь уже существует");
+    }
+    if (err === 400) {
+      console.log("Проверьте правильность заполнения полей");
+      return (this._getErrorSpan(this._button).textContent =
+        "Проверьте правильность заполнения полей");
+    } else {
+      console.log(err);
+      this._getErrorSpan(this._button).textContent = "Что-то пошло не так";
     }
   };
 
@@ -83,8 +111,9 @@ export default class FormValidator {
   };
 
   setEventListeners = () => {
-    this._form.addEventListener("input", (event) =>
-      this._handlerInputForm(event)
-    );
+    this._form.addEventListener("input", (event) => {
+      this._handlerInputForm(event);
+      this._getErrorSpan(this._button).textContent = "";
+    });
   };
 }
