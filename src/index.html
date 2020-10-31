@@ -120,7 +120,7 @@
               <div class="news-card">
                 <img
                   src="https://enix.ru/wp-content/uploads/2019/05/1531075372no_foto.jpg"
-                  alt="растение"
+                  alt="no-photo"
                   class="news-card__image"
                 />
                 <div class="news-card__btns news-card__btns_left hide">
@@ -231,8 +231,10 @@
             />
             <span class="error" data-for="password"></span>
             <!-- кнопка активна по модификатору button_active, залочена при button_disabled -->
+            <span class="error error_btn" data-for="button"></span>
             <button
               class="button button_size_l popup__button button_disabled"
+              data-for="button"
               disabled
             >
               Войти
@@ -302,6 +304,7 @@
             <span class="error error_btn" data-for="button"></span>
             <button
               class="button button_size_l button_color_blue popup__button button_disabled"
+              data-for="button"
               disabled
             >
               Зарегистрироваться

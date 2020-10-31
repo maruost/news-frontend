@@ -57,6 +57,8 @@ export default class NewsCard {
     this._iconBtn.addEventListener("mouseout", this._toggleMessageByHover);
     this._iconBtn.addEventListener("click", this._actByClick);
   };
+
+  // card elem and its evt listeners removing
   _remove = () => {
     this._iconBtn.removeEventListener("mouseover", this._toggleMessageByHover);
     this._iconBtn.removeEventListener("mouseout", this._toggleMessageByHover);
@@ -65,6 +67,7 @@ export default class NewsCard {
     this._cardElement.remove();
   };
 
+  // request to delete article from DB
   _deleteArticleFromDB = () => {
     this._api
       .removeArticle({
@@ -74,6 +77,7 @@ export default class NewsCard {
       .catch((err) => console.log(err));
   };
 
+  // request to save article to DB
   _save = () => {
     console.log(this._link);
     return this._api
@@ -91,6 +95,7 @@ export default class NewsCard {
       .catch((err) => console.log(err));
   };
 
+  // hide and show alert message depending on props
   _toggleMessageByHover = () => {
     if (
       (this._isLogged && this._iconBtn.id === "delete-icon") ||
@@ -100,10 +105,12 @@ export default class NewsCard {
     }
   };
 
+  // hide and show alert message
   _toggleMessage = () => {
     this._message.classList.toggle("hide");
   };
 
+  // save or delete article depending on props
   _actByClick = () => {
     if (this._iconBtn.id === "save-icon") {
       if (this._isLogged) {
@@ -128,8 +135,8 @@ export default class NewsCard {
     }
   };
 
+  // save btn icon fill
   _renderIcon = () => {
     this._iconIcon.classList.toggle("news-card__icon_marked");
-    this._iconIcon.setAttribute("disabled", true);
   };
 }

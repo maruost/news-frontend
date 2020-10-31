@@ -18,7 +18,4 @@ const configNewsApi = {
   },
 };
 
-module.exports = {
-  configNewsApi,
-  configMainApi,
-};
+export { configNewsApi, configMainApi };

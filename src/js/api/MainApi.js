@@ -71,17 +71,17 @@ export default class MainApi {
     }).then((res) => this._checkStatus(res));
   };
 
-  removeArticle = ( {partOfUrl, cardID} ) => {
+  removeArticle = ({ partOfUrl, cardID }) => {
     return fetch(`${this.url}${partOfUrl}/${cardID}`, {
       method: "DELETE",
       credentials: "include",
       headers: this.headers,
     }).then((res) => this._checkStatus(res));
-  }
+  };
 
   _checkStatus = (res) => {
     if (!res.ok) {
-      return Promise.reject(res);
+      return Promise.reject(res.status);
     } else {
       return res.json();
     }

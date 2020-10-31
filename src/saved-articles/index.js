@@ -1,4 +1,4 @@
-console.log("fdfd");
+import { isUserLogged } from "../js/utils/checkLogin";
 
 if (!isUserLogged()) {
   window.location.href = "index.html";
@@ -9,47 +9,23 @@ import Header from "../js/components/Header";
 import NewsCard from "../js/components/NewsCard";
 import NewsCardList from "../js/components/NewsCardList";
 
-import { isUserLogged } from "../js/utils/checkLogin";
-
-import SearchResults from "../js/components/SearchResults";
 import MainAPI from "../js/api/MainApi";
 import SavedArticles from "../js/components/SavedArticles";
 
 import { configMainApi } from "../js/configs/configs";
 
-// (function () {
-
 import {
-  errorMessages,
-  registrationPopup,
-  signUpSuccessPopup,
-  authPopup,
-  registrationButton,
-  authButton,
-  closeAuthPopup,
-  closeSuccessPopup,
-  closeRegistrationPopup,
-  signInForm,
-  signUpForm,
-  searchForm,
   cardTemplate,
-  showMoreButton,
   exitButton,
   header,
   newsCardsContainer,
-  searchResultsContainer,
-  foundResults,
-  notFound,
   savedArticlesContainer,
 } from "../js/constants/constants";
-import {
-  findPrevDate,
-  dateFormat,
-  dateWithMontsName,
-} from "../js/utils/dateFormat";
 
 import { titleText } from "../js/utils/titleTextFormat";
 import { keysObj, byField } from "../js/utils/keysSorting";
+import { errorHandler } from "../js/utils/errorHandler";
+import { userDataCleaner } from "../js/utils/userDataCleaner";
 
 const headerElem = new Header({
   header: header,
@@ -59,8 +35,6 @@ const headerElem = new Header({
 // initialization header hamburger menu
 
 headerElem.init();
-// headerElem.setEventListeners();
-// headerElem.setOptions();
 
 const mainApi = new MainAPI(configMainApi);
 
@@ -107,18 +81,14 @@ mainApi
     partOfUrl: "articles",
   })
   .then((res) => {
-    console.log(res.data);
     const keysArr = keysObj(res.data);
     keysArr.sort(byField("frequency"));
     savedArticles.renderTitle(res.data.length);
     savedArticles.renderKeyWords(keysArr);
     newsList.renderCard(res.data);
   })
-  .catch((err) => console.log(err));
+  .catch((err) => errorHandler(err));
 
 exitButton.addEventListener("click", () => {
-  document.cookie = "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-  localStorage.removeItem("token");
-  localStorage.removeItem("name");
-  location.reload();
+  userDataCleaner();
 });

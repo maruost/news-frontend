@@ -17,6 +17,8 @@ import SearchResults from "./js/components/SearchResults";
 import MainAPI from "./js/api/MainApi";
 
 import { configNewsApi, configMainApi } from "./js/configs/configs";
+import { errorHandler } from "./js/utils/errorHandler";
+import { userDataCleaner } from "./js/utils/userDataCleaner";
 
 // (function () {
 
@@ -50,7 +52,6 @@ const headerElem = new Header({
 // initialization header hamburger menu
 
 headerElem.init();
-// headerElem.setEventListeners();
 headerElem.render({
   isLogged: isUserLogged(),
   userName: localStorage.getItem("name"),
@@ -165,13 +166,14 @@ signUpForm.addEventListener("submit", (event) => {
     })
     .then((res) => {
       successPopup._open();
-    })
-    .catch((err) => console.log(err))
-    .finally(() => {
       signUpPopup._close();
       signUpFormValidator.resetValidation();
       signUpFormValidator.setSubmitButtonState(false);
       signUpForm.reset();
+    })
+    .catch((err) => {
+      signUpFormValidator.showButtonMesage(err);
+      errorHandler(err);
     });
 });
 
@@ -193,7 +195,10 @@ signInForm.addEventListener("submit", () => {
         .then((res) => {
           localStorage.setItem("name", res.data.name);
         })
-        .catch((err) => console.log(err))
+        .catch((err) => {
+          console.log("errr");
+          console.log(err);
+        })
         .finally(() => {
           headerElem.render({
             isLogged: isUserLogged,
@@ -201,8 +206,7 @@ signInForm.addEventListener("submit", () => {
           });
         });
     })
-    .catch((err) => console.log(err))
-    .finally(() => {
+    .then(() => {
       signInPopup._close();
       signInFormValidator.resetValidation();
       signInFormValidator.setSubmitButtonState(false);
@@ -215,10 +219,14 @@ signInForm.addEventListener("submit", () => {
         foundResults,
         notFound,
       ]);
+    })
+    .catch((err) => {
+      signInFormValidator.showButtonMesage(err);
+      errorHandler(err);
     });
 });
 
-//обработчик клика по кнопке поиска новостей
+// search btn handler
 
 searchForm.addEventListener("submit", () => {
   event.preventDefault();
@@ -239,30 +247,22 @@ searchForm.addEventListener("submit", () => {
       pageSize: 100,
     })
     .then((res) => {
-      console.log(res);
       if (res.articles.length !== 0) {
         res.articles.forEach((item) => {
           allArticles.push(item);
         });
-        console.log("all articles которые получили из запроса по сабмиту");
-        console.log(allArticles);
-        // newsList.renderCard(allArticles.splice(0, 3));
         searchResults.renderContainer(allArticles);
-        // searchResults.setEventListeners(allArticles);
       } else {
         searchResults.renderNotFound();
       }
-    }) // вынести кнопку шоу море за пределы события сабмита
+    })
     .catch((err) => {
-      console.log(err);
+      errorHandler(err);
       searchResults.renderError();
     })
     .finally(() => searchResults.renderLoading(false));
 });
 
 exitButton.addEventListener("click", () => {
-  document.cookie = "token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-  localStorage.removeItem("token");
-  localStorage.removeItem("name");
-  location.reload();
+  userDataCleaner();
 });

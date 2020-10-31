@@ -19,7 +19,7 @@
   justify-content: center;
   display: none;
   font-family: Roboto, Arial, Helvetica, sans-serif;
-  z-index: 100;
+  z-index: 10000000;
 }
 
 .popup.popup_is-opened {
@@ -52,5 +52,4 @@
   .popup__close {
     right: 8px;
   }
-
 }
