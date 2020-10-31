@@ -245,6 +245,7 @@ searchForm.addEventListener("submit", () => {
       prevDate: prevDate,
       currentDate: currentDate,
       pageSize: 100,
+      apiKey: "0c94ed05a1c74e599d2ccbf92efbc3dc",
     })
     .then((res) => {
       if (res.articles.length !== 0) {

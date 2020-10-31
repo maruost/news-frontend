@@ -113,7 +113,9 @@ export default class FormValidator {
   setEventListeners = () => {
     this._form.addEventListener("input", (event) => {
       this._handlerInputForm(event);
-      this._getErrorSpan(this._button).textContent = "";
+      if (this._getErrorSpan(this._button)) {
+        this._getErrorSpan(this._button).textContent = "";
+      }
     });
   };
 }

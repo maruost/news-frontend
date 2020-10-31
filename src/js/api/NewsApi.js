@@ -4,16 +4,14 @@ export default class NewsApi {
     this.headers = config.headers;
   }
 
-  getCards = ({request, prevDate, currentDate, pageSize}) => {
+  getCards = ({ request, prevDate, currentDate, pageSize, apiKey }) => {
     return fetch(
       `${this.url}` +
         `?q=${request}&` +
         `from=${prevDate}&` +
         `to=${currentDate}&` +
-        `pageSize=${pageSize}`,
-      {
-        headers: this.headers,
-      }
+        `pageSize=${pageSize}&` +
+        `apiKey=${apiKey}`
     ).then((res) => this._checkStatus(res));
   };
 
@@ -21,7 +19,7 @@ export default class NewsApi {
     if (!res.ok) {
       return Promise.reject(res.status);
     } else {
-     return res.json();
+      return res.json();
     }
   };
 }
