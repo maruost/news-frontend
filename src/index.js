@@ -1,27 +1,30 @@
+// styles
 import "./styles/index.css";
+
+// classes
 import Popup from "./js/components/Popup";
 import FormValidator from "./js/components/FormValidator";
 import Header from "./js/components/Header";
 import NewsCard from "./js/components/NewsCard";
 import NewsCardList from "./js/components/NewsCardList";
 import NewsApi from "./js/api/NewsApi";
+import SearchResults from "./js/components/SearchResults";
+import MainAPI from "./js/api/MainApi";
+
+// configs
+import { configNewsApi, configMainApi } from "./js/configs/configs";
+
+// utils
 import {
   findPrevDate,
   dateFormat,
   dateWithMontsName,
 } from "./js/utils/dateFormat";
-
 import { isUserLogged } from "./js/utils/checkLogin";
-
-import SearchResults from "./js/components/SearchResults";
-import MainAPI from "./js/api/MainApi";
-
-import { configNewsApi, configMainApi } from "./js/configs/configs";
 import { errorHandler } from "./js/utils/errorHandler";
 import { userDataCleaner } from "./js/utils/userDataCleaner";
 
-// (function () {
-
+// constants
 import {
   errorMessages,
   registrationPopup,
@@ -45,6 +48,11 @@ import {
   exitButton,
 } from "./js/constants/constants";
 
+// date
+const now = new Date();
+const currentDate = dateFormat(now);
+const prevDate = dateFormat(findPrevDate(now, 7));
+
 const headerElem = new Header({
   header: header,
 });
@@ -56,11 +64,6 @@ headerElem.render({
   isLogged: isUserLogged(),
   userName: localStorage.getItem("name"),
 });
-
-// date
-const now = new Date();
-const currentDate = dateFormat(now);
-const prevDate = dateFormat(findPrevDate(now, 7));
 
 // validation
 const signInFormValidator = new FormValidator({
@@ -83,6 +86,24 @@ const searchFormValidator = new FormValidator({
 signInFormValidator.init();
 signUpFormValidator.init();
 searchFormValidator.init();
+
+// resets forms after close and page reload
+closeAuthPopup.addEventListener("click", () => {
+  signInForm.reset();
+  signInFormValidator.resetValidation();
+});
+closeRegistrationPopup.addEventListener("click", () => {
+  signUpForm.reset();
+  signUpFormValidator.resetValidation();
+});
+
+searchForm.reset();
+searchFormValidator.resetValidation();
+
+// reset after exit
+exitButton.addEventListener("click", () => {
+  userDataCleaner();
+});
 
 // popups
 
@@ -196,8 +217,7 @@ signInForm.addEventListener("submit", () => {
           localStorage.setItem("name", res.data.name);
         })
         .catch((err) => {
-          console.log("errr");
-          console.log(err);
+          errorHandler(err);
         })
         .finally(() => {
           headerElem.render({
@@ -262,8 +282,4 @@ searchForm.addEventListener("submit", () => {
       searchResults.renderError();
     })
     .finally(() => searchResults.renderLoading(false));
-});
-
-exitButton.addEventListener("click", () => {
-  userDataCleaner();
 });

@@ -16,7 +16,6 @@ export default class Header {
   };
 
   setOptions = () => {
-    console.log(localStorage.getItem("name"));
     this._menu.querySelector(
       ".header__name"
     ).textContent = localStorage.getItem("name");

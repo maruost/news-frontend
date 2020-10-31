@@ -4,16 +4,20 @@ if (!isUserLogged()) {
   window.location.href = "index.html";
 }
 
+// styles
 import "../styles/index.css";
+
+// classes
 import Header from "../js/components/Header";
 import NewsCard from "../js/components/NewsCard";
 import NewsCardList from "../js/components/NewsCardList";
-
 import MainAPI from "../js/api/MainApi";
 import SavedArticles from "../js/components/SavedArticles";
 
+// configs
 import { configMainApi } from "../js/configs/configs";
 
+// constants
 import {
   cardTemplate,
   exitButton,
@@ -22,6 +26,7 @@ import {
   savedArticlesContainer,
 } from "../js/constants/constants";
 
+// utils
 import { titleText } from "../js/utils/titleTextFormat";
 import { keysObj, byField } from "../js/utils/keysSorting";
 import { errorHandler } from "../js/utils/errorHandler";
