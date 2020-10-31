@@ -8,20 +8,20 @@ export default class Popup {
   setEventListeners = (popupRedirect) => {
     this._link = this._popup.querySelector(".popup__link");
     if (this._openButton != null) {
-      this._openButton.addEventListener("click", this._open);
+      this._openButton.addEventListener("click", this.open);
     }
-    this._closeButton.addEventListener("click", this._close);
+    this._closeButton.addEventListener("click", this.close);
     this._link.addEventListener("click", () => {
-      this._close();
-      popupRedirect._open();
+      this.close();
+      popupRedirect.open();
     });
   };
 
-  _open = () => {
+  open = () => {
     this._popup.classList.add("popup_is-opened");
   };
 
-  _close = () => {
+  close = () => {
     this._popup.classList.remove("popup_is-opened");
   };
 }

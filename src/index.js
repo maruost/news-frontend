@@ -186,8 +186,8 @@ signUpForm.addEventListener("submit", (event) => {
       password: signUpForm.elements.password.value,
     })
     .then((res) => {
-      successPopup._open();
-      signUpPopup._close();
+      successPopup.open();
+      signUpPopup.close();
       signUpFormValidator.resetValidation();
       signUpFormValidator.setSubmitButtonState(false);
       signUpForm.reset();
@@ -227,11 +227,10 @@ signInForm.addEventListener("submit", () => {
         });
     })
     .then(() => {
-      signInPopup._close();
+      signInPopup.close();
       signInFormValidator.resetValidation();
       signInFormValidator.setSubmitButtonState(false);
       signInForm.reset();
-      allArticles = [];
       newsList.clear();
       showMoreButton.classList.remove("hide");
       searchResults.setInitialState([
