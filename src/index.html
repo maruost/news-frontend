@@ -119,7 +119,7 @@
             <template id="news-card-template">
               <div class="news-card">
                 <img
-                  src="<%=require('./images/no-foto.jpg')%>"
+                  src="https://enix.ru/wp-content/uploads/2019/05/1531075372no_foto.jpg"
                   alt="растение"
                   class="news-card__image"
                 />
@@ -153,19 +153,31 @@
                   <div class="news-card__container">
                     <p class="news-card__date">2 августа, 2019</p>
                     <article class="news-card__article">
-                      <h3 class="news-card__title">
-                        Национальное достояние – парки
-                      </h3>
-                      <p class="news-card__text">
-                        В 2016 году Америка отмечала важный юбилей: сто лет
-                        назад здесь начала складываться система национальных
-                        парков – охраняемых территорий, где и сегодня каждый
-                        может приобщиться к природе.
-                      </p>
+                      <a
+                        href=""
+                        class="news-card__descrtiption-link"
+                        target="_blank"
+                        ><h3 class="news-card__title">
+                          Национальное достояние – парки
+                        </h3></a
+                      >
+                      <a
+                        href=""
+                        class="news-card__descrtiption-link"
+                        target="_blank"
+                        ><p class="news-card__text">
+                          В 2016 году Америка отмечала важный юбилей: сто лет
+                          назад здесь начала складываться система национальных
+                          парков – охраняемых территорий, где и сегодня каждый
+                          может приобщиться к природе.
+                        </p></a
+                      >
                     </article>
                   </div>
                 </div>
-                <p class="news-card__source">Лента.ру</p>
+                <a href="" class="news-card__descrtiption-link" target="_blank"
+                  ><p class="news-card__source">Лента.ру</p></a
+                >
               </div>
             </template>
           </div>
@@ -213,7 +225,7 @@
               class="popup__input popup__input_type_link-url"
               placeholder="Введите пароль"
               required
-              minlength="2"
+              minlength="8"
               maxlength="30"
               data-for="input"
             />
@@ -270,7 +282,7 @@
               class="popup__input popup__input_type_link-url"
               placeholder="Введите пароль"
               required
-              minlength="2"
+              minlength="8"
               maxlength="30"
               data-for="input"
             />

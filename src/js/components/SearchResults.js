@@ -62,28 +62,28 @@ export default class SearchResults {
       "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз";
   };
 
-  renderResults = () => {
+  renderContainer = (articles) => {
+    this._articles = articles;
+    this._setEventListeners();
+
     this._showElement(this._results);
+    this._renderResults(this._articles);
+    this._checkBtnState();
   };
 
-  setEventListeners(articles) {
-    console.log("peredali");
-    console.log(articles);
-    this._button.addEventListener("click", () => {
-      this._showMore(articles);
-    });
+  _renderResults(elems) {
+    this._newsList(elems.splice(0, 3));
   }
-
-  _showMore(articles) {
-    if (articles.length > 3) {
-      console.log("больше тркх");
-      console.log(articles);
-      return this._newsList(articles.splice(0, 3));
-    } else {
-      console.log("меньше тркх");
-      console.log(articles);
+  _checkBtnState = () => {
+    if (this._articles.length <= 3) {
       this._hideElement(this._button);
-      return this._newsList(articles.splice(0, 3));
     }
+  };
+
+  _setEventListeners() {
+    this._button.addEventListener("click", () => {
+      this._renderResults(this._articles);
+      this._checkBtnState();
+    });
   }
 }

@@ -80,7 +80,7 @@ const searchFormValidator = new FormValidator({
 });
 
 signInFormValidator.init();
-signUpFormValidator.init(); // !!! НУЖНО ИСПРАВИТЬ ЧТО ПРИ ОТКРЫТИИ ОПРЕДЕЛННОГО ПОПАПА ИНИЦИИРУЕТСЯ ОПРЕДЕЛЕННАЯ ФОРМА
+signUpFormValidator.init();
 searchFormValidator.init();
 
 // popups
@@ -113,9 +113,48 @@ successPopup.setEventListeners(signInPopup);
 const mainApi = new MainAPI(configMainApi);
 const newsApi = new NewsApi(configNewsApi);
 
+let allArticles = [];
+
+const createCardsArray = function (res) {
+  const array = [];
+  res.forEach((card) => {
+    array.push(
+      new NewsCard({
+        template: cardTemplate,
+        keyword: searchForm.elements["search-field"].value,
+        link: card.urlToImage
+          ? card.urlToImage
+          : "https://enix.ru/wp-content/uploads/2019/05/1531075372no_foto.jpg",
+        date: dateWithMontsName(dateFormat(card.publishedAt)),
+        title: card.title,
+        text: card.description,
+        source: card.source.name,
+        url: card.url,
+        api: mainApi,
+        isLogged: isUserLogged(),
+      }).createCard()
+    );
+  });
+
+  return array;
+};
+
+const newsList = new NewsCardList({
+  container: newsCardsContainer,
+  cards: createCardsArray,
+});
+
+const searchResults = new SearchResults({
+  container: searchResultsContainer,
+  showMoreBtn: showMoreButton,
+  renderNews: newsList.renderCard,
+});
+
+searchResults.init();
+
 // authorization
 
-signUpForm.addEventListener("submit", () => {
+signUpForm.addEventListener("submit", (event) => {
   event.preventDefault();
   mainApi
     .signup({
@@ -168,46 +207,18 @@ signInForm.addEventListener("submit", () => {
       signInFormValidator.resetValidation();
       signInFormValidator.setSubmitButtonState(false);
       signInForm.reset();
+      allArticles = [];
+      newsList.clear();
+      showMoreButton.classList.remove("hide");
+      searchResults.setInitialState([
+        searchResultsContainer,
+        foundResults,
+        notFound,
+      ]);
     });
 });
 
 //обработчик клика по кнопке поиска новостей
-const createCardsArray = function (res) {
-  const array = [];
-  res.forEach((card) => {
-    array.push(
-      new NewsCard({
-        template: cardTemplate,
-        keyword: searchForm.elements["search-field"].value,
-        link: card.urlToImage,
-        date: dateWithMontsName(dateFormat(card.publishedAt)),
-        title: card.title,
-        text: card.description,
-        source: card.source.name,
-        url: card.url,
-        api: mainApi,
-        isLogged: isUserLogged(),
-      }).createCard()
-    );
-  });
-
-  return array;
-};
-
-// let allArticles = [];
-
-const newsList = new NewsCardList({
-  container: newsCardsContainer,
-  cards: createCardsArray,
-});
-
-const searchResults = new SearchResults({
-  container: searchResultsContainer,
-  showMoreBtn: showMoreButton,
-  renderNews: newsList.renderCard,
-});
-
-searchResults.init();
 
 searchForm.addEventListener("submit", () => {
   event.preventDefault();
@@ -228,20 +239,24 @@ searchForm.addEventListener("submit", () => {
       pageSize: 100,
     })
     .then((res) => {
+      console.log(res);
       if (res.articles.length !== 0) {
         res.articles.forEach((item) => {
           allArticles.push(item);
         });
-        newsList.renderCard(allArticles.splice(0, 3));
-        searchResults.renderResults();
+        console.log("all articles которые получили из запроса по сабмиту");
+        console.log(allArticles);
+        // newsList.renderCard(allArticles.splice(0, 3));
+        searchResults.renderContainer(allArticles);
+        // searchResults.setEventListeners(allArticles);
       } else {
         searchResults.renderNotFound();
       }
     }) // вынести кнопку шоу море за пределы события сабмита
-    .then(() => {
-      searchResults.setEventListeners(allArticles);
+    .catch((err) => {
+      console.log(err);
+      searchResults.renderError();
     })
-    .catch((err) => searchResults.renderError())
     .finally(() => searchResults.renderLoading(false));
 });
 

@@ -1,6 +1,7 @@
 const errorMessages = {
   empty: "Это обязательное поле",
   wrongLength: "Должно быть от 2 до 30 символов",
+  wrongLengthPassword: "Должно быть от 8 до 30 символов",
   wrongType: "Здесь должна быть ссылка",
   printEmail: "Введите действующий e-mail",
   missKeyWord: "Нужно ввести ключевое слово",
@@ -27,10 +28,6 @@ const searchForm = document.forms.search;
 
 // templates
 const cardTemplate = document.querySelector("#news-card-template").content;
-// const signInTemplate = document.querySelector("#signin-popup-template").content;
-// const signUpTemplate = document.querySelector("#signup-popup-template").content;
-// const successTemplate = document.querySelector("#success-popup-template")
-//   .content;
 
 // buttons
 const showMoreButton = document.querySelector(".search-results__button");

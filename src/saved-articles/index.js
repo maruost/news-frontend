@@ -79,7 +79,9 @@ const createCardsArray = function (res) {
       new NewsCard({
         template: cardTemplate,
         keyword: card.keyword,
-        link: card.image,
+        link: card.image
+          ? card.image
+          : "https://enix.ru/wp-content/uploads/2019/05/1531075372no_foto.jpg",
         date: card.date,
         title: card.title,
         text: card.text,
