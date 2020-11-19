@@ -24,4 +24,4 @@ CSS3, HTML5, Webpack, Babel, BEM
 
 
 ## Ссылка на github pages:
-https://maruost.github.io/news-frontend/
+https://maruost.github.io/news-frontend/ (без бекэнда)
