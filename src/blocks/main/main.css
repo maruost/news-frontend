@@ -1,0 +1,38 @@
+@import url(./__lead/main__lead.css);
+@import url(./__about/main__about.css);
+@import url(./__saved-articles/main__saved-articles.css);
+@import url(./__search-reuslts/main__search-results.css);
+.main {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+  .main__lead {
+    padding-bottom: 48px;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .main__lead {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .main__saved-articles {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .main__search-results {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .main__about {
+    margin: 32px auto 80px;
+    padding-right: 16px;
+    padding-left: 16px;
+
+  }
+}
+

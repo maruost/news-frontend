@@ -1,0 +1,15 @@
+.header__menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  font-size: 16px;
+  opacity: 1;
+}
+
+.header__menu.header__menu_is-opened {
+  display: block;
+}

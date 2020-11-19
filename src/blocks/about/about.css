@@ -1,0 +1,38 @@
+@import url(../about/__avatar/about__avatar.css);
+@import url(../about/__info/about__info.css);
+@import url(../about/__title/about__title.css);
+@import url(../about/__description/about__description.css);
+@import url(../about/__pic/about__pic.css);
+
+
+.about {
+  display: flex;
+  max-width: 1232px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .about__title {
+    font-size: 30px;
+    line-height: 40px;
+    padding-bottom: 16px;
+  }
+
+}
+
+@media screen and (max-width: 710px) {
+  .about {
+    flex-direction: column;
+  }
+
+  .about__avatar {
+    width: 100%;
+    padding-right: 0;
+    padding-bottom: 24px;
+    text-align: center;
+  }
+
+  .about__info {
+  width: 100%;
+  }
+}

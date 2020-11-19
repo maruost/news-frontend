@@ -1,0 +1,8 @@
+.footer__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0;
+  font-size: 18px;
+  line-height: 24px;
+}

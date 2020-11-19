@@ -1,0 +1,48 @@
+@import url(./__article/news-card__article.css);
+@import url(./__btn/news-card__btn.css);
+@import url(./__date/news-card__date.css);
+@import url(./__description/news-card__description.css);
+@import url(./__description-link/news-card__description-link.css);
+@import url(./__image/news-card__image.css);
+@import url(./__source/news-card__source.css);
+@import url(./__title/news-card__title.css);
+@import url(./__btn/news-card__btn.css);
+@import url(./__icon/news-card__icon.css);
+@import url(./__message/news-card__message.css);
+@import url(./__container/news-card__container.css);
+@import url(./__btns/news-card__btns.css);
+@import url(./__text/news-card__text.css);
+
+.news-card {
+  max-width: 400px;
+  border-radius: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  background-color: #fff;
+  position: relative;
+}
+
+@media screen and (max-width: 870px) {
+  .news-card__title {
+    font-size: 22px;
+    line-height: 24px;
+    padding-bottom: 10px;
+  }
+
+  .news-card__text {
+    font-size: 16px;
+    line-height: 22px;
+    padding-bottom: 12px;
+  }
+
+  .news-card__btn {
+    max-width: 100px;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .news-card__btn {
+    max-width: 200px;
+  }
+}

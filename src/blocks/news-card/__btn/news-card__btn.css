@@ -1,0 +1,26 @@
+.news-card__btn {
+  background-color: #fff;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  height: 40px;
+  min-width: 40px;
+  margin-right: 5px;
+
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.news-card__btn:active, .news-card__btn:focus {
+  outline: none;
+}
+
+.news-card__btn:last-child {
+  margin-right: 0;
+}
+
+.news-card__btn_key-word {
+  font-size: 14px;
+  line-height: 24px;
+}

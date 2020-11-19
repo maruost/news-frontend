@@ -1,0 +1,12 @@
+.news-card__message {
+  background-color: #fff;
+  border-radius: 8px;
+  border: none;
+  height: 40px;
+  margin-right: 5px;
+  vertical-align: center;
+
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+}

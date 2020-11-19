@@ -1,0 +1,8 @@
+.news-card__image {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 16px 16px 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

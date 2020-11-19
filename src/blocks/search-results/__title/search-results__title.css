@@ -1,0 +1,8 @@
+.search-results__title {
+  font-family: RobotoSlab, Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  line-height: 46px;
+  max-width: 1232px;
+  margin: 0 0;
+  padding-bottom: 64px;
+}

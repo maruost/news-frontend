@@ -1,0 +1,7 @@
+.about__info {
+  display: flex;
+  max-width: 600px;
+  width: 55%;
+  flex-direction: column;
+
+}

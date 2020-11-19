@@ -1,0 +1,41 @@
+@import url(./__cover/lead__cover.css);
+@import url(./__title/lead__title.css);
+@import url(./__about/lead__about.css);
+@import url(./__container/lead__container.css);
+
+.lead {
+  color: white;
+  background-image: url(../../images/lead__cover.png);
+  margin-top: -100px;
+  padding-top: 160px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 768px) {
+  .lead {
+    padding-top: 138px;
+  }
+  .lead__title {
+    line-height: 40px;
+    font-size: 36px;
+    padding-bottom: 16px;
+    max-width: 385px;
+  }
+
+  .lead__about {
+    padding-bottom: 48px;
+    max-width: 452px;
+  }
+
+  .lead__container {
+    max-width: 452px;;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .lead__about {
+    padding-bottom: 122px;
+  }
+}

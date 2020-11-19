@@ -1,0 +1,34 @@
+.news-card__icon {
+  fill: none;
+  transition: all ease 0.8s;
+}
+
+/* .news-card__icon:hover + .news-card__btn {
+  color: green;
+} */
+
+.news-card__icon_bookmark {
+  stroke: #b6bcbf;
+}
+
+.news-card__icon_bin {
+  fill: #b6bcbf;
+}
+
+/* .news-card__icon_bookmark:hover {
+  stroke: #1a1b22;
+}
+
+.news-card__icon_bin:hover {
+  fill: #1a1b22;
+} */
+
+.news-card__icon_marked {
+  fill: #2F71E5;
+  stroke:#2F71E5;
+}
+
+.news-card__icon_marked:hover {
+  fill: #2F71E5;
+  stroke:#2F71E5;
+}

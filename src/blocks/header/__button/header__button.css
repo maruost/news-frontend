@@ -1,0 +1,28 @@
+.header__button {
+  text-decoration: none;
+  border: 1px solid #ffffff;
+  border-color: inherit;
+  border-radius: 100px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-right: 12px;
+  padding-left: 12px;
+  color: inherit;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.header__button_disabled {
+  display: none;
+}
+
+.header__button:active, .header__button:focus {
+  outline: none;
+}
+
+.header__button_entry {
+  border: 0px;
+}

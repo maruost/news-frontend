@@ -1,0 +1,20 @@
+@import url(./__header/page__header.css);
+@import url(./__footer/page__footer.css);
+
+.page {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 710px) {
+  .page__header {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .page__footer {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}

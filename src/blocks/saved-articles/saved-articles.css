@@ -1,0 +1,47 @@
+@import url(./__title/saved-articles__title.css);
+@import url(./__subtitle/saved-articles__subtitle.css);
+@import url(./__key-words/saved-articles__key-words.css);
+
+.saved-articles {
+  max-width: 1232px;
+  padding-bottom: 40px;
+  padding-top: 40px;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+@media screen and (max-width: 768px) {
+  .saved-articles {
+    padding-top: 24px;
+    padding-bottom: 32px;
+  }
+  .saved-articles__title {
+    line-height: 34px;
+    font-size: 30px;
+    max-width: 336px;
+  }
+
+  .saved-articles__subtitle {
+    line-height: 24px;
+    font-size: 14px;
+    padding-bottom: 16px;
+  }
+
+  .saved-articles__key-words {
+    line-height: 24px;
+    font-size: 14px;
+    padding-top: 16px;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .saved-articles {
+    padding-top: 8px;
+  }
+
+  .saved-articles__key-words {
+    line-height: 24px;
+    font-size: 18px;
+  }
+
+}

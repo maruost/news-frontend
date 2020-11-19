@@ -1,0 +1,16 @@
+.header__fill {
+  background-color: transparent;
+  opacity: 1;
+}
+
+.header__fill.header__fill_menu-is-opened {
+  position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: #1A1B22;
+    z-index: 99;
+    color: white;
+    fill: white;
+
+}
